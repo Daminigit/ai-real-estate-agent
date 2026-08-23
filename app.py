@@ -1,6 +1,8 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
+import re
+import pandas as pd
 from datetime import datetime
 from data_parser import load_enquiries, get_insights_summary
 from segmentation_agent import analyze_and_segment
@@ -135,6 +137,25 @@ with tab3:
             with st.chat_message("assistant"):
                 with st.spinner("Thinking..."):
                     response = chat_with_lead(prompt, st.session_state[chat_key][:-1])
+                    
+                    # Intercept booking tags
+                    match = re.search(r'\[BOOK_VISIT:\s*(.*?)\]', response)
+                    if match:
+                        dt_str = match.group(1).strip()
+                        # Remove tag so user doesn't see it
+                        response = re.sub(r'\[BOOK_VISIT:.*?\]', '', response).strip()
+                        
+                        # Save booking
+                        conn = sqlite3.connect(DB_PATH)
+                        c = conn.cursor()
+                        c.execute("INSERT INTO site_visits (lead_id, scheduled_time, status) VALUES (?, ?, ?)", (selected_lead_id, dt_str, 'Confirmed'))
+                        conn.commit()
+                        conn.close()
+                        
+                        # Force upgrade to Hot
+                        update_lead_score(selected_lead_id, 100, "Hot")
+                        st.toast(f"✅ Site visit automatically scheduled for {dt_str}!", icon="📅")
+                        
                     st.markdown(response)
             
             st.session_state[chat_key].append({"role": "assistant", "content": response})

@@ -1,0 +1,201 @@
+enquiry_id,age,profession,annual_income_lpa,current_locality,workplace_area,family_size,config_interested,budget_min_lakh,budget_max_lakh,purpose,buyer_status,financing,loan_preapproved,timeline,enquiry_source,brochure_downloads,site_visits_other_projects,preferred_contact,vastu_important,key_requirement
+ENQ0001,29,IT Professional,26,Marathahalli,ITPL,3,3 BHK,135,145,Self Use,Upgrading from 1BHK,Home Loan,Yes,Just exploring,Google Search,2,0,WhatsApp,Yes,Pet friendly
+ENQ0002,29,Government Employee,15,Marathahalli,EPIP Whitefield,2,3 BHK,75,85,Self Use,Upgrading from 2BHK,Home Loan + Savings,Yes,Within 1 month,Facebook Ad,4,1,WhatsApp,No,Close to office
+ENQ0003,47,Government Employee,9,Outside Bengaluru,Marathahalli ORR,3,2 BHK,70,90,Self Use,First Home,Mostly Savings,Yes,3-6 months,Google Search,4,2,Email,No,East facing unit
+ENQ0004,30,Government Employee,7,KR Puram,Work From Home,2,2 BHK,70,80,Investment,Upgrading from 2BHK,Mostly Savings,No,1-3 months,Walk-in,5,3,Phone Call,No,Close to office
+ENQ0005,43,Marketing/Sales Professional,18,Outside Bengaluru,Outside Bengaluru,5,2 BHK,90,100,Self Use,Upgrading from 1BHK,Home Loan + Savings,Yes,3-6 months,Facebook Ad,2,2,Phone Call,No,Large clubhouse
+ENQ0006,32,Bank Employee,18,KR Puram,CBD,3,3 BHK,80,95,Self Use + Investment,Adding Second Property,Mostly Savings,Yes,3-6 months,Google Search,3,0,Phone Call,Yes,Large clubhouse
+ENQ0007,29,IT Professional,14,Hoodi,ITPL,2,2 BHK,70,80,Self Use,Upgrading from 1BHK,Home Loan + Savings,No,Just exploring,Walk-in,2,0,Email,No,Big balcony
+ENQ0008,40,IT Professional,26,Whitefield,ITPL,3,3 BHK,125,140,Self Use,First Home,Home Loan + Savings,Yes,1-3 months,Facebook Ad,2,3,Email,No,Close to office
+ENQ0009,47,NRI (Software),32,Marathahalli,ITPL,2,3 BHK,140,155,Self Use + Investment,Relocating to Bengaluru,Home Loan + Savings,No,Just exploring,Property Portal,0,2,Phone Call,No,Ready to move preferred
+ENQ0010,33,Teacher/Professor,15,Mahadevapura,Marathahalli ORR,2,2 BHK,70,90,Investment,First Home,Home Loan,Yes,6-12 months,Referral,3,0,WhatsApp,No,Pet friendly
+ENQ0011,39,IT Professional,16,KR Puram,Work From Home,1,2 BHK,85,100,For Parents,Adding Second Property,Home Loan + Savings,Yes,1-3 months,Instagram Ad,4,4,WhatsApp,No,High floor with view
+ENQ0012,39,Marketing/Sales Professional,7,Kadugodi,CBD,1,2 BHK,70,80,Self Use,Upgrading from 2BHK,Mostly Savings,Yes,3-6 months,Instagram Ad,4,1,Phone Call,No,Ready to move preferred
+ENQ0013,41,NRI (Software),45,Mahadevapura,ITPL,2,3 BHK,155,175,Self Use,First Home,Home Loan,No,3-6 months,Referral,2,1,Phone Call,No,Ready to move preferred
+ENQ0014,39,Business Owner,25,Brookefield,EPIP Whitefield,4,3 BHK,125,135,For Parents,First Home,Mostly Savings,Yes,Within 1 month,Property Portal,4,0,Phone Call,Yes,Gated community safety
+ENQ0015,29,Startup Employee,10,KR Puram,CBD,2,3 BHK,70,85,Self Use,Upgrading from 2BHK,Home Loan,No,6-12 months,Property Portal,1,2,Phone Call,Yes,Good schools nearby
+ENQ0016,38,Startup Employee,12,Varthur,ITPL,1,2 BHK,70,85,Self Use,First Home,Mostly Savings,No,3-6 months,Facebook Ad,1,1,WhatsApp,No,Gated community safety
+ENQ0017,34,Government Employee,18,Mahadevapura,Marathahalli ORR,3,2 BHK,80,100,Self Use + Investment,First Home,Home Loan,No,3-6 months,Property Portal,2,0,WhatsApp,Yes,East facing unit
+ENQ0018,52,Teacher/Professor,9,Outside Bengaluru,EPIP Whitefield,2,2 BHK,70,90,Self Use,Upgrading from 2BHK,Selling Existing Property,No,1-3 months,Property Portal,5,1,Email,Yes,Low maintenance cost
+ENQ0019,32,IT Professional,12,Whitefield,Marathahalli ORR,3,2 BHK,70,80,Self Use,First Home,Selling Existing Property,No,3-6 months,LinkedIn,1,2,WhatsApp,Yes,Good schools nearby
+ENQ0020,29,IT Professional,26,Marathahalli,CBD,5,3 BHK,140,160,Investment,First Home,Home Loan,No,Just exploring,Google Search,0,1,WhatsApp,Yes,Close to office
+ENQ0021,30,Teacher/Professor,15,Marathahalli,CBD,4,2 BHK,80,90,For Parents,First Home,Home Loan,No,1-3 months,Property Portal,2,0,Email,Yes,Good schools nearby
+ENQ0022,31,IT Professional,18,Hoodi,Outside Bengaluru,1,2 BHK,90,100,For Parents,First Home,Home Loan,No,3-6 months,LinkedIn,4,0,WhatsApp,Yes,Pet friendly
+ENQ0023,41,Teacher/Professor,18,Outside Bengaluru,Marathahalli ORR,3,3 BHK,85,100,Self Use + Investment,Adding Second Property,Home Loan + Savings,No,3-6 months,Google Search,1,0,Phone Call,Yes,Pet friendly
+ENQ0024,36,Bank Employee,13,Kadugodi,Marathahalli ORR,3,2 BHK,70,80,Investment,First Home,Home Loan,Yes,3-6 months,Property Portal,3,2,Email,No,Gated community safety
+ENQ0025,27,IT Professional,18,Hoodi,Work From Home,3,2 BHK,80,90,Self Use,Adding Second Property,Home Loan,No,3-6 months,Property Portal,1,1,WhatsApp,Yes,Pet friendly
+ENQ0026,36,IT Professional,14,Mahadevapura,Bagmane Tech Park,2,2 BHK,70,90,Self Use,Upgrading from 2BHK,Home Loan,No,6-12 months,Walk-in,3,1,Phone Call,No,Gated community safety
+ENQ0027,35,IT Professional,10,Kadugodi,ITPL,1,2 BHK,70,90,Self Use,Upgrading from 2BHK,Selling Existing Property,No,6-12 months,Google Search,1,2,Phone Call,No,Pet friendly
+ENQ0028,31,IT Professional,10,Whitefield,CBD,2,2 BHK,70,80,Investment,Upgrading from 2BHK,Mostly Savings,No,3-6 months,Property Portal,2,2,WhatsApp,No,Ready to move preferred
+ENQ0029,40,Doctor,20,Whitefield,EPIP Whitefield,4,2 BHK,95,115,Self Use,Adding Second Property,Home Loan,No,Within 1 month,Property Portal,3,1,WhatsApp,No,Close to office
+ENQ0030,49,Business Owner,32,KR Puram,ITPL,3,3 BHK,145,165,Self Use,First Home,Home Loan + Savings,Yes,1-3 months,Property Portal,5,3,Email,Yes,Large clubhouse
+ENQ0031,28,IT Professional,14,Hoodi,ITPL,4,3 BHK,75,90,Self Use,Relocating to Bengaluru,Home Loan + Savings,Yes,1-3 months,Property Portal,5,4,Phone Call,Yes,Big balcony
+ENQ0032,32,IT Professional,26,Varthur,ITPL,3,3 BHK,120,135,Investment,Relocating to Bengaluru,Home Loan,No,Within 1 month,Google Search,3,2,WhatsApp,Yes,East facing unit
+ENQ0033,36,NRI (Software),20,Outside Bengaluru,Bagmane Tech Park,4,2 BHK,85,105,Self Use,Upgrading from 1BHK,Selling Existing Property,No,Just exploring,Referral,2,0,WhatsApp,No,Gated community safety
+ENQ0034,51,Chartered Accountant,12,Kadugodi,Marathahalli ORR,5,2 BHK,70,90,Self Use,Relocating to Bengaluru,Home Loan,No,6-12 months,Google Search,2,0,WhatsApp,No,Pet friendly
+ENQ0035,37,IT Professional,16,Whitefield,CBD,5,2 BHK,70,90,Self Use,Upgrading from 1BHK,Home Loan,No,1-3 months,Google Search,3,1,WhatsApp,Yes,Gated community safety
+ENQ0036,30,IT Professional,22,Marathahalli,Work From Home,3,2 BHK,100,120,Self Use,First Home,Home Loan,Yes,Within 1 month,LinkedIn,4,3,Phone Call,No,Large clubhouse
+ENQ0037,30,IT Professional,26,ITPL Area,Outside Bengaluru,1,3 BHK,125,140,Self Use,Upgrading from 1BHK,Mostly Savings,No,3-6 months,LinkedIn,4,1,WhatsApp,Yes,Gated community safety
+ENQ0038,42,NRI (Software),25,Outside Bengaluru,ITPL,5,3 BHK,135,145,Self Use,Adding Second Property,Home Loan,Yes,1-3 months,Facebook Ad,2,4,Phone Call,Yes,Good schools nearby
+ENQ0039,44,Business Owner,45,Brookefield,CBD,3,3 BHK,155,165,Self Use,First Home,Home Loan + Savings,Yes,1-3 months,Google Search,5,2,WhatsApp,Yes,Large clubhouse
+ENQ0040,30,Startup Employee,16,Hoodi,Work From Home,4,2 BHK,70,85,Self Use,First Home,Home Loan + Savings,No,3-6 months,Facebook Ad,3,0,Phone Call,Yes,Low maintenance cost
+ENQ0041,39,IT Professional,18,Marathahalli,Outside Bengaluru,3,2 BHK,95,115,Self Use,First Home,Mostly Savings,Yes,3-6 months,LinkedIn,4,0,Phone Call,No,Ready to move preferred
+ENQ0042,37,Startup Employee,10,Outside Bengaluru,EPIP Whitefield,4,3 BHK,70,80,Self Use,First Home,Home Loan,No,Within 1 month,Hoarding,3,0,Email,No,High floor with view
+ENQ0043,37,IT Professional,30,Outside Bengaluru,Bagmane Tech Park,2,3 BHK,125,145,Self Use,First Home,Home Loan,No,6-12 months,Hoarding,3,1,Email,Yes,High floor with view
+ENQ0044,37,Bank Employee,13,Hoodi,Marathahalli ORR,5,2 BHK,70,90,Self Use,Upgrading from 1BHK,Mostly Savings,No,3-6 months,Property Portal,1,1,WhatsApp,No,Near metro station
+ENQ0045,38,IT Professional,12,Whitefield,Work From Home,4,2 BHK,70,85,For Parents,First Home,Home Loan + Savings,No,3-6 months,Referral,1,2,WhatsApp,Yes,Ready to move preferred
+ENQ0046,42,Bank Employee,13,Hoodi,Outside Bengaluru,3,2 BHK,70,85,Self Use + Investment,Adding Second Property,Home Loan + Savings,No,1-3 months,Google Search,4,3,Phone Call,No,Gated community safety
+ENQ0047,39,IT Professional,14,Marathahalli,Bagmane Tech Park,2,2 BHK,70,80,For Parents,First Home,Home Loan,Yes,3-6 months,Facebook Ad,4,2,WhatsApp,Yes,Ready to move preferred
+ENQ0048,49,Business Owner,25,Marathahalli,CBD,3,3 BHK,130,150,Self Use,Adding Second Property,Home Loan,Yes,6-12 months,Property Portal,1,1,WhatsApp,No,Large clubhouse
+ENQ0049,33,IT Professional,18,Kadugodi,ITPL,2,3 BHK,100,120,Self Use,Relocating to Bengaluru,Home Loan,No,6-12 months,Google Search,2,0,WhatsApp,Yes,Rental yield potential
+ENQ0050,46,Defence/PSU,9,Hoodi,Outside Bengaluru,1,2 BHK,70,85,Self Use,Upgrading from 2BHK,Home Loan + Savings,Yes,1-3 months,Google Search,3,4,WhatsApp,No,Near metro station
+ENQ0051,48,Government Employee,9,Marathahalli,EPIP Whitefield,1,2 BHK,70,85,Investment,Upgrading from 2BHK,Home Loan,Yes,3-6 months,Google Search,2,2,Phone Call,Yes,Good schools nearby
+ENQ0052,31,IT Professional,26,Marathahalli,CBD,4,3 BHK,150,170,Self Use,First Home,Mostly Savings,No,3-6 months,Instagram Ad,4,0,Phone Call,Yes,Near metro station
+ENQ0053,29,Startup Employee,26,Mahadevapura,EPIP Whitefield,1,2 BHK,110,120,Self Use,First Home,Mostly Savings,No,Just exploring,Facebook Ad,1,1,Phone Call,Yes,High floor with view
+ENQ0054,35,IT Professional,14,Marathahalli,Outside Bengaluru,1,2 BHK,75,85,For Parents,Upgrading from 2BHK,Home Loan,No,6-12 months,Google Search,3,0,Phone Call,No,Good schools nearby
+ENQ0055,55,Business Owner,25,Hoodi,EPIP Whitefield,1,3 BHK,125,145,Self Use,Upgrading from 2BHK,Home Loan,Yes,Just exploring,Property Portal,2,1,Phone Call,Yes,Gated community safety
+ENQ0056,49,NRI (Software),20,ITPL Area,Outside Bengaluru,3,2 BHK,105,120,Investment,First Home,Home Loan,No,6-12 months,Google Search,3,2,WhatsApp,Yes,Rental yield potential
+ENQ0057,42,Defence/PSU,9,Varthur,Bagmane Tech Park,2,2 BHK,70,90,Self Use,Upgrading from 1BHK,Home Loan,No,3-6 months,Facebook Ad,1,0,WhatsApp,Yes,Big balcony
+ENQ0058,38,IT Professional,12,Whitefield,ITPL,2,3 BHK,70,90,Self Use,Relocating to Bengaluru,Home Loan + Savings,No,6-12 months,Hoarding,1,0,Phone Call,No,Large clubhouse
+ENQ0059,32,IT Professional,18,Hoodi,Bagmane Tech Park,3,2 BHK,80,100,Investment,Upgrading from 2BHK,Home Loan,No,Just exploring,Property Portal,1,0,WhatsApp,No,Pet friendly
+ENQ0060,33,IT Professional,14,ITPL Area,Outside Bengaluru,5,2 BHK,75,90,Self Use,Upgrading from 2BHK,Selling Existing Property,Yes,3-6 months,LinkedIn,4,2,Phone Call,Yes,Low maintenance cost
+ENQ0061,46,Defence/PSU,9,Marathahalli,CBD,3,2 BHK,70,80,Self Use,Relocating to Bengaluru,Mostly Savings,No,1-3 months,Hoarding,2,0,Phone Call,Yes,East facing unit
+ENQ0062,41,Government Employee,13,Whitefield,ITPL,4,2 BHK,70,80,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,1-3 months,Google Search,3,0,WhatsApp,No,Ready to move preferred
+ENQ0063,27,IT Professional,16,Varthur,Bagmane Tech Park,3,2 BHK,85,100,For Parents,First Home,Mostly Savings,No,6-12 months,Facebook Ad,3,2,WhatsApp,No,Big balcony
+ENQ0064,33,Doctor,20,Whitefield,Outside Bengaluru,2,2 BHK,85,105,Self Use,Upgrading from 2BHK,Selling Existing Property,Yes,1-3 months,Property Portal,5,1,Phone Call,Yes,East facing unit
+ENQ0065,37,IT Professional,10,Marathahalli,Bagmane Tech Park,5,2 BHK,70,90,Self Use,Upgrading from 2BHK,Home Loan,No,6-12 months,Property Portal,3,0,WhatsApp,Yes,Big balcony
+ENQ0066,55,Marketing/Sales Professional,11,Varthur,CBD,3,2 BHK,70,85,Self Use,Relocating to Bengaluru,Selling Existing Property,Yes,6-12 months,Facebook Ad,1,2,WhatsApp,Yes,Big balcony
+ENQ0067,29,IT Professional,22,KR Puram,Outside Bengaluru,1,2 BHK,95,110,Self Use + Investment,Upgrading from 1BHK,Home Loan + Savings,No,1-3 months,Google Search,3,4,WhatsApp,No,Rental yield potential
+ENQ0068,32,Marketing/Sales Professional,7,Mahadevapura,ITPL,1,2 BHK,70,80,Self Use,Upgrading from 2BHK,Home Loan,Yes,1-3 months,Property Portal,4,1,WhatsApp,No,Gated community safety
+ENQ0069,30,Marketing/Sales Professional,18,Whitefield,Outside Bengaluru,2,2 BHK,100,110,Self Use + Investment,Upgrading from 2BHK,Home Loan,Yes,1-3 months,Property Portal,3,0,WhatsApp,Yes,East facing unit
+ENQ0070,31,IT Professional,18,KR Puram,Outside Bengaluru,3,3 BHK,75,90,Investment,First Home,Home Loan,No,6-12 months,Referral,2,2,WhatsApp,Yes,Rental yield potential
+ENQ0071,40,IT Professional,12,Marathahalli,Outside Bengaluru,1,2 BHK,70,85,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,Within 1 month,Property Portal,6,1,Phone Call,No,Gated community safety
+ENQ0072,29,IT Professional,18,KR Puram,Work From Home,2,2 BHK,95,115,Investment,Upgrading from 1BHK,Home Loan,No,1-3 months,Hoarding,2,0,WhatsApp,No,High floor with view
+ENQ0073,31,IT Professional,26,Outside Bengaluru,EPIP Whitefield,1,3 BHK,145,165,Self Use,First Home,Home Loan,No,1-3 months,Instagram Ad,4,1,WhatsApp,Yes,East facing unit
+ENQ0074,32,Government Employee,11,Mahadevapura,Outside Bengaluru,2,2 BHK,70,90,Investment,Relocating to Bengaluru,Home Loan + Savings,No,1-3 months,Google Search,3,2,WhatsApp,Yes,Big balcony
+ENQ0075,33,Defence/PSU,18,Mahadevapura,Bagmane Tech Park,3,2 BHK,75,90,Self Use,Upgrading from 2BHK,Home Loan,Yes,1-3 months,Google Search,2,2,WhatsApp,No,Low maintenance cost
+ENQ0076,44,Business Owner,45,Mahadevapura,ITPL,3,3 BHK,155,165,Self Use + Investment,Upgrading from 1BHK,Home Loan + Savings,No,1-3 months,Google Search,3,4,Phone Call,No,Pet friendly
+ENQ0077,55,Bank Employee,9,Kadugodi,ITPL,4,2 BHK,70,90,Self Use,Upgrading from 1BHK,Home Loan + Savings,Yes,3-6 months,Referral,4,1,WhatsApp,No,Low maintenance cost
+ENQ0078,49,Doctor,25,Varthur,ITPL,1,3 BHK,140,155,Self Use,First Home,Home Loan + Savings,No,6-12 months,Property Portal,2,1,WhatsApp,No,Gated community safety
+ENQ0079,34,IT Professional,10,Hoodi,Work From Home,2,2 BHK,70,85,Self Use,Adding Second Property,Home Loan,No,3-6 months,Google Search,1,1,WhatsApp,Yes,Near metro station
+ENQ0080,33,IT Professional,26,Whitefield,Marathahalli ORR,4,3 BHK,135,155,For Parents,Upgrading from 2BHK,Home Loan,No,3-6 months,Google Search,2,1,WhatsApp,No,Close to office
+ENQ0081,48,Teacher/Professor,9,Marathahalli,Work From Home,4,2 BHK,70,90,Self Use,First Home,Home Loan + Savings,Yes,Just exploring,Referral,1,0,Phone Call,Yes,Big balcony
+ENQ0082,31,IT Professional,26,Marathahalli,Work From Home,3,3 BHK,135,150,Self Use,Upgrading from 2BHK,Home Loan + Savings,Yes,Within 1 month,Hoarding,4,2,Email,No,Near metro station
+ENQ0083,36,IT Professional,22,Kadugodi,ITPL,1,3 BHK,115,125,Self Use,First Home,Home Loan,No,3-6 months,Facebook Ad,2,1,WhatsApp,No,Good schools nearby
+ENQ0084,33,IT Professional,14,ITPL Area,CBD,3,2 BHK,70,90,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,Just exploring,Google Search,0,2,Phone Call,Yes,Large clubhouse
+ENQ0085,43,Teacher/Professor,13,Hoodi,EPIP Whitefield,1,2 BHK,70,85,Self Use,First Home,Home Loan + Savings,No,1-3 months,Google Search,5,3,WhatsApp,Yes,Pet friendly
+ENQ0086,37,IT Professional,22,Varthur,ITPL,5,2 BHK,110,120,Self Use,Relocating to Bengaluru,Home Loan,No,Within 1 month,Instagram Ad,5,2,WhatsApp,No,High floor with view
+ENQ0087,35,Startup Employee,16,Marathahalli,Outside Bengaluru,5,2 BHK,70,85,Self Use,Upgrading from 2BHK,Home Loan,No,3-6 months,LinkedIn,4,1,Phone Call,Yes,High floor with view
+ENQ0088,32,Bank Employee,15,ITPL Area,CBD,1,2 BHK,85,95,Self Use,First Home,Home Loan,No,Within 1 month,Facebook Ad,3,4,Phone Call,No,Rental yield potential
+ENQ0089,29,IT Professional,12,Whitefield,EPIP Whitefield,1,2 BHK,70,90,Self Use,First Home,Selling Existing Property,Yes,6-12 months,Referral,1,0,Phone Call,No,East facing unit
+ENQ0090,33,NRI (Software),32,Brookefield,ITPL,5,3 BHK,135,145,Self Use,First Home,Home Loan,No,3-6 months,Facebook Ad,4,2,WhatsApp,Yes,Low maintenance cost
+ENQ0091,49,Government Employee,9,Hoodi,EPIP Whitefield,1,2 BHK,70,85,Self Use,First Home,Home Loan + Savings,No,1-3 months,Referral,3,3,Email,Yes,Near metro station
+ENQ0092,36,IT Professional,16,Mahadevapura,ITPL,3,2 BHK,75,95,Investment,Adding Second Property,Home Loan + Savings,No,Within 1 month,Property Portal,3,1,Phone Call,Yes,Near metro station
+ENQ0093,49,NRI (Software),38,Hoodi,Outside Bengaluru,5,3 BHK,155,170,Investment,First Home,Selling Existing Property,No,3-6 months,Facebook Ad,2,2,WhatsApp,No,High floor with view
+ENQ0094,33,Marketing/Sales Professional,18,Varthur,CBD,4,2 BHK,95,110,Self Use,First Home,Selling Existing Property,No,Just exploring,Referral,1,1,Email,No,Near metro station
+ENQ0095,47,NRI (Software),28,Marathahalli,Outside Bengaluru,3,3 BHK,140,150,Self Use + Investment,First Home,Home Loan,Yes,3-6 months,Google Search,1,2,WhatsApp,Yes,Rental yield potential
+ENQ0096,40,IT Professional,30,Varthur,EPIP Whitefield,3,3 BHK,140,150,Self Use,First Home,Home Loan,No,3-6 months,Hoarding,1,1,Phone Call,No,Close to office
+ENQ0097,39,Chartered Accountant,12,Marathahalli,CBD,3,2 BHK,70,90,Self Use,First Home,Home Loan,No,1-3 months,Google Search,4,4,WhatsApp,No,Good schools nearby
+ENQ0098,34,IT Professional,22,Whitefield,CBD,1,3 BHK,120,135,Self Use,Upgrading from 2BHK,Home Loan,Yes,6-12 months,LinkedIn,3,0,WhatsApp,No,East facing unit
+ENQ0099,36,Marketing/Sales Professional,13,Hoodi,ITPL,4,2 BHK,70,85,Self Use,First Home,Home Loan,Yes,Just exploring,Facebook Ad,2,0,WhatsApp,No,Close to office
+ENQ0100,48,NRI (Software),32,Marathahalli,EPIP Whitefield,2,3 BHK,155,175,For Parents,Upgrading from 2BHK,Home Loan,No,Just exploring,Property Portal,0,1,Email,Yes,Near metro station
+ENQ0101,39,Marketing/Sales Professional,7,Mahadevapura,Work From Home,5,2 BHK,70,80,Self Use,First Home,Home Loan + Savings,No,Within 1 month,Instagram Ad,5,4,Phone Call,Yes,Pet friendly
+ENQ0102,32,IT Professional,22,Hoodi,EPIP Whitefield,1,2 BHK,100,110,Self Use,Relocating to Bengaluru,Mostly Savings,Yes,3-6 months,Referral,1,1,Email,No,Big balcony
+ENQ0103,34,IT Professional,12,Outside Bengaluru,Marathahalli ORR,3,2 BHK,70,85,Self Use,Upgrading from 2BHK,Home Loan,Yes,6-12 months,Property Portal,3,1,WhatsApp,No,Ready to move preferred
+ENQ0104,36,NRI (Software),32,Varthur,Marathahalli ORR,2,3 BHK,155,165,Self Use,First Home,Home Loan + Savings,No,Within 1 month,Property Portal,3,4,Phone Call,No,Large clubhouse
+ENQ0105,54,Chartered Accountant,18,Outside Bengaluru,EPIP Whitefield,2,3 BHK,75,85,Self Use,Upgrading from 1BHK,Home Loan,No,3-6 months,LinkedIn,2,1,Email,Yes,Gated community safety
+ENQ0106,29,IT Professional,30,KR Puram,Bagmane Tech Park,3,3 BHK,125,145,Self Use,First Home,Mostly Savings,No,1-3 months,Property Portal,3,2,WhatsApp,Yes,Close to office
+ENQ0107,51,NRI (Software),32,Kadugodi,Work From Home,3,3 BHK,155,165,Investment,First Home,Home Loan,No,1-3 months,Google Search,2,4,WhatsApp,Yes,East facing unit
+ENQ0108,55,NRI (Software),32,Whitefield,Work From Home,3,3 BHK,135,150,Self Use,Upgrading from 2BHK,Selling Existing Property,Yes,Just exploring,Walk-in,2,1,Phone Call,Yes,Gated community safety
+ENQ0109,44,Marketing/Sales Professional,7,Mahadevapura,Outside Bengaluru,4,2 BHK,70,90,Self Use,Relocating to Bengaluru,Home Loan,Yes,Just exploring,Walk-in,1,1,WhatsApp,No,Gated community safety
+ENQ0110,30,IT Professional,12,Varthur,ITPL,1,2 BHK,70,80,Self Use,Upgrading from 2BHK,Home Loan,Yes,3-6 months,Facebook Ad,4,2,WhatsApp,No,Close to office
+ENQ0111,28,IT Professional,14,Whitefield,ITPL,4,2 BHK,70,80,Self Use + Investment,Upgrading from 2BHK,Home Loan,Yes,6-12 months,Instagram Ad,2,1,Phone Call,Yes,Near metro station
+ENQ0112,40,Marketing/Sales Professional,18,Mahadevapura,Marathahalli ORR,4,2 BHK,85,105,Self Use,First Home,Home Loan + Savings,No,3-6 months,Referral,3,0,Phone Call,No,Near metro station
+ENQ0113,29,IT Professional,22,Brookefield,ITPL,4,3 BHK,100,115,Self Use,Upgrading from 2BHK,Home Loan,Yes,Within 1 month,LinkedIn,6,0,Phone Call,No,Near metro station
+ENQ0114,37,IT Professional,18,Kadugodi,Marathahalli ORR,2,2 BHK,100,120,Self Use,Upgrading from 1BHK,Selling Existing Property,Yes,3-6 months,Google Search,2,0,WhatsApp,No,Gated community safety
+ENQ0115,30,Marketing/Sales Professional,13,ITPL Area,CBD,3,2 BHK,70,80,Self Use,Adding Second Property,Home Loan + Savings,Yes,3-6 months,Google Search,2,1,Phone Call,Yes,Big balcony
+ENQ0116,35,IT Professional,18,Hoodi,CBD,4,2 BHK,90,105,For Parents,Upgrading from 1BHK,Selling Existing Property,Yes,Within 1 month,LinkedIn,5,2,Phone Call,No,East facing unit
+ENQ0117,34,NRI (Software),28,Brookefield,Marathahalli ORR,5,3 BHK,120,130,Investment,Upgrading from 2BHK,Mostly Savings,No,1-3 months,Referral,3,0,Email,No,Good schools nearby
+ENQ0118,37,Startup Employee,22,Whitefield,Outside Bengaluru,5,3 BHK,95,105,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,Just exploring,Google Search,0,2,WhatsApp,No,Rental yield potential
+ENQ0119,33,IT Professional,14,ITPL Area,Work From Home,5,3 BHK,70,85,Self Use,Upgrading from 1BHK,Home Loan,No,6-12 months,Facebook Ad,3,1,WhatsApp,No,Ready to move preferred
+ENQ0120,31,IT Professional,14,Whitefield,Marathahalli ORR,4,2 BHK,70,80,For Parents,Upgrading from 2BHK,Home Loan,No,3-6 months,LinkedIn,1,0,WhatsApp,Yes,Ready to move preferred
+ENQ0121,35,IT Professional,18,KR Puram,Bagmane Tech Park,4,2 BHK,90,105,Self Use,Upgrading from 2BHK,Home Loan + Savings,Yes,3-6 months,Property Portal,2,2,WhatsApp,Yes,Low maintenance cost
+ENQ0122,46,Business Owner,25,Mahadevapura,CBD,4,3 BHK,140,155,Investment,Adding Second Property,Home Loan,No,3-6 months,Google Search,1,1,Phone Call,No,Close to office
+ENQ0123,37,Business Owner,45,Kadugodi,CBD,3,3 BHK,155,175,Self Use + Investment,First Home,Selling Existing Property,No,Just exploring,Property Portal,2,1,Phone Call,Yes,Pet friendly
+ENQ0124,29,Business Owner,45,Brookefield,Marathahalli ORR,4,3 BHK,155,165,Self Use + Investment,Upgrading from 2BHK,Home Loan + Savings,Yes,3-6 months,Facebook Ad,3,2,Email,No,Gated community safety
+ENQ0125,46,Defence/PSU,9,Whitefield,ITPL,2,2 BHK,70,80,Self Use,Upgrading from 2BHK,Mostly Savings,No,3-6 months,Referral,1,2,Phone Call,No,Rental yield potential
+ENQ0126,38,IT Professional,16,Whitefield,EPIP Whitefield,5,2 BHK,75,85,Investment,First Home,Home Loan,No,6-12 months,Referral,1,2,WhatsApp,No,Large clubhouse
+ENQ0127,29,IT Professional,14,Outside Bengaluru,ITPL,3,2 BHK,70,85,Investment,Upgrading from 2BHK,Home Loan + Savings,No,6-12 months,Google Search,3,1,WhatsApp,No,Large clubhouse
+ENQ0128,29,IT Professional,22,Marathahalli,Marathahalli ORR,4,3 BHK,105,115,Self Use,Upgrading from 2BHK,Selling Existing Property,No,1-3 months,Hoarding,3,4,WhatsApp,No,High floor with view
+ENQ0129,27,IT Professional,18,Whitefield,Marathahalli ORR,2,2 BHK,90,105,Self Use,Upgrading from 2BHK,Mostly Savings,Yes,1-3 months,Google Search,3,1,Phone Call,Yes,Rental yield potential
+ENQ0130,34,IT Professional,16,Brookefield,Bagmane Tech Park,4,2 BHK,70,85,Self Use,Upgrading from 1BHK,Home Loan + Savings,Yes,Just exploring,Walk-in,2,1,WhatsApp,No,East facing unit
+ENQ0131,52,Bank Employee,13,Mahadevapura,Work From Home,2,2 BHK,70,90,Investment,First Home,Home Loan,No,3-6 months,Property Portal,3,1,Phone Call,No,Large clubhouse
+ENQ0132,31,IT Professional,12,Marathahalli,Bagmane Tech Park,2,2 BHK,70,80,For Parents,First Home,Home Loan,No,3-6 months,Walk-in,4,1,WhatsApp,No,Ready to move preferred
+ENQ0133,40,IT Professional,26,Whitefield,CBD,3,3 BHK,120,140,Investment,First Home,Home Loan,Yes,1-3 months,Property Portal,4,2,WhatsApp,No,Gated community safety
+ENQ0134,37,IT Professional,14,Outside Bengaluru,Work From Home,4,2 BHK,70,80,For Parents,First Home,Mostly Savings,No,6-12 months,Hoarding,3,1,Phone Call,Yes,Large clubhouse
+ENQ0135,29,Business Owner,28,Marathahalli,Work From Home,4,3 BHK,125,140,For Parents,Upgrading from 2BHK,Home Loan,No,6-12 months,Google Search,2,0,WhatsApp,Yes,Gated community safety
+ENQ0136,54,Bank Employee,18,Kadugodi,Outside Bengaluru,2,2 BHK,90,110,Self Use,First Home,Selling Existing Property,No,6-12 months,Facebook Ad,1,1,WhatsApp,No,Pet friendly
+ENQ0137,31,IT Professional,16,Kadugodi,EPIP Whitefield,2,2 BHK,90,100,Investment,Upgrading from 2BHK,Home Loan + Savings,No,3-6 months,Property Portal,4,0,WhatsApp,No,Big balcony
+ENQ0138,38,IT Professional,14,KR Puram,EPIP Whitefield,2,2 BHK,70,80,Investment,Upgrading from 2BHK,Mostly Savings,No,Just exploring,Property Portal,1,2,WhatsApp,No,Near metro station
+ENQ0139,31,IT Professional,18,Marathahalli,Bagmane Tech Park,4,2 BHK,80,100,Self Use,Upgrading from 2BHK,Home Loan,No,Just exploring,LinkedIn,1,0,WhatsApp,No,Big balcony
+ENQ0140,31,Government Employee,18,Whitefield,ITPL,3,2 BHK,85,100,Investment,Relocating to Bengaluru,Home Loan + Savings,Yes,Just exploring,Property Portal,0,1,Phone Call,Yes,Low maintenance cost
+ENQ0141,37,NRI (Software),28,Hoodi,Outside Bengaluru,3,3 BHK,125,145,Investment,First Home,Home Loan,No,3-6 months,Google Search,3,2,WhatsApp,No,East facing unit
+ENQ0142,27,IT Professional,12,ITPL Area,EPIP Whitefield,5,3 BHK,70,90,Self Use,Adding Second Property,Selling Existing Property,No,Just exploring,Instagram Ad,0,1,Phone Call,Yes,Ready to move preferred
+ENQ0143,40,Business Owner,20,Mahadevapura,ITPL,1,3 BHK,115,130,Self Use + Investment,Adding Second Property,Mostly Savings,No,3-6 months,Google Search,1,0,WhatsApp,Yes,High floor with view
+ENQ0144,27,IT Professional,14,Kadugodi,CBD,3,2 BHK,75,85,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,Within 1 month,Facebook Ad,4,4,Email,No,Rental yield potential
+ENQ0145,39,IT Professional,10,KR Puram,Marathahalli ORR,5,2 BHK,70,85,Investment,First Home,Mostly Savings,No,1-3 months,Instagram Ad,3,4,WhatsApp,No,Big balcony
+ENQ0146,37,IT Professional,22,Marathahalli,ITPL,3,2 BHK,110,125,Self Use,Relocating to Bengaluru,Home Loan + Savings,Yes,1-3 months,Referral,4,3,Phone Call,Yes,Pet friendly
+ENQ0147,34,IT Professional,16,KR Puram,CBD,2,2 BHK,80,90,Self Use + Investment,Upgrading from 2BHK,Mostly Savings,Yes,6-12 months,Facebook Ad,3,2,Phone Call,No,Close to office
+ENQ0148,51,Business Owner,38,Outside Bengaluru,EPIP Whitefield,5,3 BHK,155,175,Investment,First Home,Mostly Savings,Yes,3-6 months,Property Portal,3,0,WhatsApp,No,Large clubhouse
+ENQ0149,28,Startup Employee,14,Whitefield,Work From Home,4,2 BHK,70,80,Self Use,Adding Second Property,Home Loan,No,Just exploring,Walk-in,1,2,WhatsApp,Yes,Big balcony
+ENQ0150,39,Chartered Accountant,30,Brookefield,Outside Bengaluru,2,3 BHK,125,145,Self Use,Relocating to Bengaluru,Home Loan,No,3-6 months,Walk-in,1,1,Phone Call,No,Close to office
+ENQ0151,43,Teacher/Professor,7,ITPL Area,Work From Home,4,2 BHK,70,85,Self Use + Investment,Upgrading from 2BHK,Home Loan,No,3-6 months,Referral,3,1,Email,Yes,High floor with view
+ENQ0152,43,Defence/PSU,15,Kadugodi,Work From Home,4,2 BHK,70,80,Self Use + Investment,Relocating to Bengaluru,Home Loan + Savings,No,Within 1 month,Property Portal,3,1,WhatsApp,No,East facing unit
+ENQ0153,46,Marketing/Sales Professional,15,Brookefield,Bagmane Tech Park,4,2 BHK,70,80,Self Use,First Home,Home Loan + Savings,Yes,6-12 months,Property Portal,3,1,WhatsApp,Yes,Pet friendly
+ENQ0154,33,IT Professional,18,Outside Bengaluru,Work From Home,1,2 BHK,75,90,Self Use + Investment,Relocating to Bengaluru,Home Loan,Yes,3-6 months,Google Search,1,2,WhatsApp,Yes,Large clubhouse
+ENQ0155,32,NRI (Software),45,ITPL Area,EPIP Whitefield,4,3 BHK,155,170,Self Use + Investment,Adding Second Property,Home Loan,No,6-12 months,Instagram Ad,2,2,WhatsApp,No,Large clubhouse
+ENQ0156,32,Defence/PSU,9,Mahadevapura,EPIP Whitefield,2,2 BHK,70,90,Self Use,Adding Second Property,Home Loan,No,3-6 months,Instagram Ad,3,2,WhatsApp,Yes,Close to office
+ENQ0157,37,Government Employee,15,Mahadevapura,ITPL,5,2 BHK,70,85,Self Use,First Home,Selling Existing Property,No,6-12 months,Walk-in,3,1,WhatsApp,No,Large clubhouse
+ENQ0158,34,IT Professional,16,Hoodi,ITPL,2,3 BHK,90,105,Investment,First Home,Mostly Savings,No,6-12 months,Google Search,1,0,WhatsApp,Yes,Pet friendly
+ENQ0159,48,NRI (Software),28,Whitefield,Bagmane Tech Park,4,3 BHK,155,165,Investment,Adding Second Property,Home Loan,No,3-6 months,Referral,1,2,Phone Call,Yes,Ready to move preferred
+ENQ0160,40,Defence/PSU,11,Outside Bengaluru,ITPL,4,2 BHK,70,80,Investment,Adding Second Property,Home Loan,Yes,3-6 months,Property Portal,2,2,WhatsApp,No,High floor with view
+ENQ0161,41,Teacher/Professor,11,Brookefield,EPIP Whitefield,3,3 BHK,70,90,Self Use + Investment,Upgrading from 2BHK,Home Loan,No,1-3 months,Instagram Ad,5,4,Phone Call,Yes,Gated community safety
+ENQ0162,32,Marketing/Sales Professional,11,Whitefield,Work From Home,3,2 BHK,70,85,Self Use,Relocating to Bengaluru,Selling Existing Property,No,Just exploring,Property Portal,2,1,WhatsApp,No,Good schools nearby
+ENQ0163,36,IT Professional,22,Brookefield,Marathahalli ORR,3,3 BHK,115,125,Self Use,Adding Second Property,Home Loan,No,Just exploring,Hoarding,1,0,WhatsApp,Yes,Near metro station
+ENQ0164,38,IT Professional,10,Whitefield,CBD,4,3 BHK,70,90,Self Use,Relocating to Bengaluru,Selling Existing Property,No,6-12 months,Property Portal,2,1,WhatsApp,No,Large clubhouse
+ENQ0165,30,IT Professional,22,Hoodi,CBD,2,3 BHK,115,135,Self Use,Relocating to Bengaluru,Mostly Savings,No,1-3 months,Property Portal,4,3,WhatsApp,Yes,Ready to move preferred
+ENQ0166,35,NRI (Software),25,Hoodi,ITPL,3,3 BHK,115,135,Self Use + Investment,Adding Second Property,Home Loan,No,6-12 months,Google Search,2,1,Email,No,East facing unit
+ENQ0167,53,Business Owner,20,Mahadevapura,ITPL,2,2 BHK,85,95,Self Use,Upgrading from 1BHK,Home Loan,No,3-6 months,Instagram Ad,4,2,Email,No,Near metro station
+ENQ0168,34,Government Employee,18,KR Puram,ITPL,1,2 BHK,95,105,Self Use,Relocating to Bengaluru,Home Loan,Yes,6-12 months,LinkedIn,1,2,WhatsApp,Yes,Large clubhouse
+ENQ0169,32,Business Owner,45,Marathahalli,Bagmane Tech Park,2,3 BHK,155,175,Self Use,First Home,Selling Existing Property,No,Just exploring,Walk-in,1,2,Phone Call,Yes,East facing unit
+ENQ0170,27,IT Professional,16,Whitefield,Work From Home,1,2 BHK,80,95,Investment,Upgrading from 2BHK,Home Loan + Savings,No,Just exploring,LinkedIn,2,1,Phone Call,Yes,High floor with view
+ENQ0171,40,Chartered Accountant,14,Whitefield,CBD,3,3 BHK,70,85,Investment,Adding Second Property,Selling Existing Property,No,Just exploring,Instagram Ad,0,2,Phone Call,No,Big balcony
+ENQ0172,38,IT Professional,22,KR Puram,CBD,1,3 BHK,115,130,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,3-6 months,Facebook Ad,4,1,WhatsApp,No,Big balcony
+ENQ0173,39,NRI (Software),45,Whitefield,Outside Bengaluru,3,3 BHK,155,175,For Parents,Adding Second Property,Home Loan,No,1-3 months,Referral,4,2,WhatsApp,No,Large clubhouse
+ENQ0174,30,Defence/PSU,15,Kadugodi,EPIP Whitefield,5,2 BHK,70,80,Self Use,Relocating to Bengaluru,Mostly Savings,No,Just exploring,Hoarding,1,0,WhatsApp,No,Low maintenance cost
+ENQ0175,29,IT Professional,18,Marathahalli,Work From Home,2,2 BHK,85,100,Self Use,First Home,Home Loan + Savings,Yes,Just exploring,Instagram Ad,2,2,Phone Call,No,Good schools nearby
+ENQ0176,29,IT Professional,22,Varthur,Marathahalli ORR,1,2 BHK,105,125,Self Use,First Home,Home Loan,No,3-6 months,Google Search,3,1,Email,Yes,East facing unit
+ENQ0177,30,NRI (Software),38,Outside Bengaluru,Marathahalli ORR,4,3 BHK,155,165,For Parents,Adding Second Property,Home Loan,Yes,1-3 months,Walk-in,5,3,WhatsApp,No,East facing unit
+ENQ0178,33,IT Professional,14,Marathahalli,Work From Home,3,3 BHK,75,85,Self Use,First Home,Home Loan + Savings,No,Just exploring,Facebook Ad,1,2,Email,No,Near metro station
+ENQ0179,36,IT Professional,30,Outside Bengaluru,EPIP Whitefield,2,3 BHK,155,175,Self Use,Upgrading from 2BHK,Home Loan + Savings,No,Just exploring,Instagram Ad,2,1,WhatsApp,No,Pet friendly
+ENQ0180,32,IT Professional,26,Brookefield,ITPL,2,3 BHK,140,150,Self Use,Adding Second Property,Home Loan,No,1-3 months,Referral,3,0,Phone Call,No,Near metro station
+ENQ0181,51,Chartered Accountant,26,ITPL Area,EPIP Whitefield,4,3 BHK,140,150,Self Use,Upgrading from 2BHK,Home Loan,No,Just exploring,Property Portal,1,0,WhatsApp,Yes,Pet friendly
+ENQ0182,45,NRI (Software),32,Marathahalli,Outside Bengaluru,4,3 BHK,155,170,Self Use + Investment,Adding Second Property,Home Loan,Yes,6-12 months,Property Portal,3,1,Phone Call,No,Pet friendly
+ENQ0183,46,Doctor,25,Kadugodi,Work From Home,4,3 BHK,115,130,Self Use,First Home,Selling Existing Property,No,1-3 months,Property Portal,3,4,Phone Call,Yes,Big balcony
+ENQ0184,36,IT Professional,30,Whitefield,Bagmane Tech Park,2,3 BHK,145,165,Self Use,Relocating to Bengaluru,Home Loan,No,3-6 months,Property Portal,2,0,WhatsApp,No,Pet friendly
+ENQ0185,53,Bank Employee,9,KR Puram,Bagmane Tech Park,2,2 BHK,70,80,Self Use,First Home,Home Loan,Yes,Just exploring,Referral,2,0,Email,No,Good schools nearby
+ENQ0186,50,NRI (Software),25,Varthur,Work From Home,2,2 BHK,105,120,Self Use,First Home,Home Loan + Savings,Yes,1-3 months,LinkedIn,3,4,WhatsApp,Yes,Low maintenance cost
+ENQ0187,31,IT Professional,16,Hoodi,Marathahalli ORR,4,2 BHK,80,100,Self Use,Adding Second Property,Home Loan,No,3-6 months,LinkedIn,1,2,WhatsApp,Yes,Ready to move preferred
+ENQ0188,30,NRI (Software),25,Mahadevapura,EPIP Whitefield,2,3 BHK,120,135,Self Use,Adding Second Property,Mostly Savings,No,6-12 months,Facebook Ad,2,2,WhatsApp,No,Near metro station
+ENQ0189,29,IT Professional,18,Mahadevapura,EPIP Whitefield,2,2 BHK,75,90,Investment,First Home,Home Loan,No,3-6 months,Property Portal,1,1,Phone Call,No,Ready to move preferred
+ENQ0190,27,IT Professional,12,Whitefield,Work From Home,2,2 BHK,70,90,Self Use,Upgrading from 2BHK,Home Loan,Yes,3-6 months,Instagram Ad,4,1,WhatsApp,Yes,Close to office
+ENQ0191,31,NRI (Software),25,KR Puram,EPIP Whitefield,1,3 BHK,120,140,Self Use,Upgrading from 1BHK,Home Loan,No,3-6 months,Property Portal,2,1,Email,No,Gated community safety
+ENQ0192,31,Doctor,20,Hoodi,Work From Home,3,2 BHK,85,95,Self Use,First Home,Mostly Savings,No,Just exploring,Google Search,2,2,WhatsApp,Yes,Close to office
+ENQ0193,36,IT Professional,16,Varthur,ITPL,4,2 BHK,70,90,For Parents,First Home,Home Loan + Savings,No,3-6 months,Referral,3,0,WhatsApp,No,Rental yield potential
+ENQ0194,28,Marketing/Sales Professional,11,Whitefield,CBD,2,2 BHK,70,85,Self Use,Upgrading from 1BHK,Home Loan,Yes,Within 1 month,Property Portal,5,1,Phone Call,Yes,Near metro station
+ENQ0195,43,Teacher/Professor,7,Whitefield,Outside Bengaluru,1,3 BHK,70,85,Self Use + Investment,Adding Second Property,Home Loan,No,6-12 months,Google Search,1,2,Phone Call,No,Big balcony
+ENQ0196,36,Doctor,45,Brookefield,Bagmane Tech Park,4,3 BHK,155,165,Self Use + Investment,Adding Second Property,Mostly Savings,Yes,6-12 months,LinkedIn,3,2,Phone Call,No,Close to office
+ENQ0197,53,Defence/PSU,11,Hoodi,Bagmane Tech Park,1,2 BHK,70,80,Self Use,Adding Second Property,Mostly Savings,No,6-12 months,LinkedIn,2,2,WhatsApp,Yes,Pet friendly
+ENQ0198,53,Business Owner,28,Marathahalli,CBD,1,3 BHK,145,160,For Parents,Relocating to Bengaluru,Home Loan + Savings,No,Just exploring,Google Search,0,0,WhatsApp,Yes,High floor with view
+ENQ0199,34,IT Professional,10,Marathahalli,CBD,3,3 BHK,70,80,Self Use,Upgrading from 2BHK,Home Loan,No,1-3 months,Property Portal,4,3,WhatsApp,Yes,Good schools nearby
+ENQ0200,40,IT Professional,26,Varthur,CBD,3,3 BHK,120,135,Self Use + Investment,Relocating to Bengaluru,Home Loan,Yes,Just exploring,Referral,0,2,Email,No,Pet friendly

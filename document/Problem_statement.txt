@@ -1,0 +1,57 @@
+Problem Statement
+AI-Powered Real Estate Lead Generation & Site Visit Conversion Agent (Real Estate Developer Use Case)
+You are tasked with building an agentic AI workflow for a real estate developer launching a new residential project in Catchment A. The system should intelligently manage the complete lead journey — from understanding buyer preferences in the catchment to converting qualified leads into confirmed site visits — by combining structured market data with a Large Language Model (LLM) and workflow automation.
+Objective
+Design and implement an agentic application that:
+Understands buyer property preferences within the catchment using historical enquiry data
+Identifies and targets the right buyer segments for marketing campaigns
+Generates, captures, and qualifies high-intent leads through automated interactions
+Continuously nurtures qualified leads by answering their questions from project information
+Converts nurtured leads into confirmed, scheduled site visits
+System Workflow
+Understand (Buyer Preference Analysis)
+Load and preprocess historical catchment enquiry data (past CRM enquiries, portal leads, walk-ins) — POC: simulated dataset catchment_enquiries.csv with 200 enquiry records for Catchment A
+Extract relevant fields such as profession, income, budget range, configuration interest, purpose, timeline, and enquiry source
+Use an LLM to analyze the data and produce key demand insights for Catchment A
+Identify & Target (Segmentation)
+Convert insights into 3–5 concrete buyer personas (e.g., IT professional, first-time buyer, 2 BHK, budget ₹80L–₹1 Cr)
+For each persona, generate platform-specific targeting parameters for Meta, LinkedIn, and Google
+Recommend budget allocation across segments
+Action (Campaign Execution)
+Run targeted campaigns on Meta, LinkedIn, and Google for the identified segments
+Generate segment-specific ad copy using the LLM
+POC scope: campaigns are simulated via a lead form standing in for platform lead-gen APIs
+Capture (Lead Collection)
+Capture lead information generated through the campaigns in real time
+Validate and deduplicate leads (e.g., same phone number across platforms)
+Store unified lead records with source attribution in a central lead store (CRM)
+Qualify (Intent Scoring)
+Engage each lead in a natural conversation to learn budget, need, authority, and timeline (BANT)
+Use the LLM to compute a lead score (0–100) from stated answers and behavioral signals
+Classify leads as Hot / Warm / Cold and route them accordingly
+Nurture (Continuous Engagement)
+Continuously interact with qualified leads and answer their questions instantly using the project knowledge base — POC: a simulated brochure project_brochure.md for the fictional project “Aurelia Heights” (configurations, pricing, payment plan, amenities, location details, offers, FAQs)
+Run follow-up sequences for Warm leads and re-engagement for inactive leads
+Detect buying signals (e.g., “Can I visit this weekend?”) and escalate to scheduling
+Schedule Site Visits (Conversion)
+Offer available slots and book confirmed site visits on the sales team calendar
+Send confirmation and reminder messages with location and contact details
+Log visit status (confirmed / rescheduled / no-show) and feed outcomes back into the funnel
+Output Display
+Present the funnel results in a user-friendly format:
+Catchment insight report and buyer segments
+Captured leads with source, score, and Hot/Warm/Cold band
+AI-generated qualification reasoning for each lead
+Conversation history with answers drawn from project information
+Confirmed site visit schedule with booking details
+Success Criteria
+Segment accuracy — campaigns reach people matching the catchment buyer profile
+Lead quality — share of captured leads qualified as high-intent
+Engagement — instant response to buyer questions; leads stay active in the funnel
+Conversion — number of confirmed site visits scheduled per campaign
+Scope & Assumptions
+The workflow applies to one project in one catchment (A), designed to be reusable for other projects
+The agent covers the journey up to a confirmed site visit; negotiation and sale closure are out of scope
+Historical catchment data is simulated via catchment_enquiries.csv (200 records), representing the real CRM and portal enquiry data a developer would have for the catchment
+Project information is provided via a simulated brochure, project_brochure.md, for the fictional project “Aurelia Heights”; in production this would be the developer's actual brochure, price sheet, and RERA documents
+Ad platform APIs are simulated via a lead capture form; production deployment would swap in Meta, Google, and LinkedIn lead-gen APIs and the WhatsApp Business API

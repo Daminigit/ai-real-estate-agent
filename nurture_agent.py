@@ -2,7 +2,7 @@ import os
 from llm_client import get_groq_completion
 
 def load_brochure():
-    brochure_path = "project_brochure.md"
+    brochure_path = "document/project_brochure.md"
     if os.path.exists(brochure_path):
         with open(brochure_path, "r", encoding="utf-8") as f:
             return f.read()

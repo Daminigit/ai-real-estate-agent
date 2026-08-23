@@ -54,7 +54,7 @@ with tab1:
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Historical Data Summary")
-        df_enq = load_enquiries()
+        df_enq = load_enquiries("data/catchment_enquiries.csv")
         st.dataframe(df_enq.head())
         summary = get_insights_summary(df_enq)
         st.text(summary)
@@ -168,7 +168,11 @@ with tab4:
                 c.execute("INSERT INTO site_visits (lead_id, scheduled_time, status) VALUES (?, ?, ?)", (visit_lead_id, dt_str, 'Confirmed'))
                 conn.commit()
                 conn.close()
-                st.success("Visit Booked!")
+                
+                # Automatically upgrade lead to Hot when they book a visit
+                update_lead_score(visit_lead_id, 100, "Hot")
+                
+                st.success("Visit Booked! Lead status upgraded to Hot.")
     
     with col2:
         st.subheader("Confirmed Visits")

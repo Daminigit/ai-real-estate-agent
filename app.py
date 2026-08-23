@@ -284,10 +284,16 @@ with tab3:
             st.session_state[chat_key].append({"role": "assistant", "content": response})
             save_chat_message(selected_lead_id, "assistant", response)
 
-            # BANT qualification — run every 3rd message to reduce LLM calls & jitter
+            # BANT qualification:
+            # Run on 1st message (immediate feedback) then every 3rd to reduce LLM calls & jitter
             msg_count = len([m for m in st.session_state[chat_key] if m['role'] == 'user'])
-            if msg_count % 3 == 0:
-                history_text = "\n".join([f"{m['role']}: {m['content']}" for m in st.session_state[chat_key]])
+            if msg_count > 0 and (msg_count == 1 or msg_count % 3 == 0):
+                # Exclude greeting/nudge bot messages — only pass real conversation
+                real_history = [
+                    m for m in st.session_state[chat_key]
+                    if not (m['role'] == 'assistant' and m['content'] in (GREETING, NUDGE))
+                ]
+                history_text = "\n".join([f"{m['role']}: {m['content']}" for m in real_history])
                 with st.spinner("Updating Qualification Score..."):
                     bant = extract_bant_and_score(history_text)
                     score = bant.get("score", 0)
@@ -296,6 +302,7 @@ with tab3:
                     record_score(selected_lead_id, score, category)
 
             st.rerun()
+
 
 # ── TAB 4: Site Visits ────────────────────────────────────────────────────────
 with tab4:

@@ -15,10 +15,17 @@ class BANTResult(BaseModel):
     score: int = 0
     category: Literal["Hot", "Warm", "Cold"] = "Cold"
 
+    @field_validator('budget', 'authority', 'need', 'timeline', mode='before')
+    @classmethod
+    def cast_to_string(cls, v):
+        if v is None:
+            return "Unknown"
+        return str(v)
+
     @field_validator('score')
     @classmethod
     def clamp_score(cls, v):
-        return max(0, min(100, v))
+        return max(0, min(100, int(v)))
 
 
 def extract_bant_and_score(conversation_history: str, lead_info: dict = None) -> dict:

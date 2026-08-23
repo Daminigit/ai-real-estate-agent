@@ -8,8 +8,18 @@ def load_brochure():
             return f.read()
     return "Brochure not found."
 
-def chat_with_lead(user_input: str, chat_history: list):
+def chat_with_lead(user_input: str, chat_history: list, lead_info: dict = None):
     brochure_content = load_brochure()
+    
+    lead_context = ""
+    if lead_info:
+        lead_context = (
+            f"\n\nLead Profile:\n"
+            f"- Name: {lead_info.get('name', 'Unknown')}\n"
+            f"- Budget: ₹{lead_info.get('budget_min')}L - ₹{lead_info.get('budget_max')}L\n"
+            f"- Locality: {lead_info.get('locality', 'Unknown')}\n"
+            f"- Profession: {lead_info.get('profession', 'Unknown')}\n"
+        )
     
     messages = [
         {
@@ -21,6 +31,7 @@ def chat_with_lead(user_input: str, chat_history: list):
                 "Once they provide a date and time, confirm the booking and append the exact string [BOOK_VISIT: YYYY-MM-DD HH:MM] "
                 "at the very end of your response. Ensure the date is in YYYY-MM-DD format and time is in HH:MM (24-hour) format. "
                 "Example: [BOOK_VISIT: 2026-08-25 14:30]"
+                f"{lead_context}"
                 f"\n\nBrochure Context:\n{brochure_content}"
             )
         }

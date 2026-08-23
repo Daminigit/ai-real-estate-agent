@@ -252,7 +252,7 @@ with tab3:
             # AI response
             with st.chat_message("assistant"):
                 with st.spinner("Thinking..."):
-                    response = chat_with_lead(prompt, st.session_state[chat_key][:-1])
+                    response = chat_with_lead(prompt, st.session_state[chat_key][:-1], lead_info=lead_row.to_dict())
 
                     # Intercept booking tags
                     match = re.search(r'\[BOOK_VISIT:\s*(.*?)\]', response)
@@ -289,7 +289,7 @@ with tab3:
                 ]
                 history_text = "\n".join([f"{m['role']}: {m['content']}" for m in real_history])
                 with st.spinner("Updating Qualification Score..."):
-                    bant = extract_bant_and_score(history_text)
+                    bant = extract_bant_and_score(history_text, lead_info=lead_row.to_dict())
                     score = bant.get("score", 0)
                     category = bant.get("category", "Cold")
                     update_lead_score(selected_lead_id, score, category)

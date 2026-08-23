@@ -21,7 +21,17 @@ class BANTResult(BaseModel):
         return max(0, min(100, v))
 
 
-def extract_bant_and_score(conversation_history: str) -> dict:
+def extract_bant_and_score(conversation_history: str, lead_info: dict = None) -> dict:
+    lead_context = ""
+    if lead_info:
+        lead_context = (
+            f"\n\nLead Profile (from initial capture form):\n"
+            f"- Name: {lead_info.get('name', 'Unknown')}\n"
+            f"- Budget: ₹{lead_info.get('budget_min')}L - ₹{lead_info.get('budget_max')}L\n"
+            f"- Locality: {lead_info.get('locality', 'Unknown')}\n"
+            f"- Profession: {lead_info.get('profession', 'Unknown')}\n"
+        )
+        
     messages = [
         {
             "role": "system",
@@ -29,9 +39,11 @@ def extract_bant_and_score(conversation_history: str) -> dict:
                 "You are an expert lead qualifier. Read the following conversation and extract "
                 "BANT details (Budget, Authority, Need, Timeline). "
                 "Also provide a score from 0 to 100 based on their intent to buy. "
+                "Note: The user may have already provided their budget or details in the Lead Profile below. Use it to inform your scoring. "
                 "Output ONLY a valid JSON object with keys: 'budget', 'authority', 'need', "
                 "'timeline', 'score' (integer 0-100), 'category' (must be exactly Hot, Warm, or Cold). "
                 "Do not include markdown code fences."
+                f"{lead_context}"
             )
         },
         {

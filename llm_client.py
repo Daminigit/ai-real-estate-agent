@@ -7,7 +7,7 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 from dotenv import load_dotenv
 
 @retry(wait=wait_random_exponential(min=1, max=10), stop=stop_after_attempt(5))
-def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7) -> str:
+def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, response_format=None) -> str:
     """Wrapper to call Groq API with rate limit retries."""
     # Ensure latest env vars are loaded dynamically
     load_dotenv(override=True)
@@ -22,17 +22,23 @@ def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7) 
         return f"Error: Groq client not initialized. {e}"
         
     try:
-        response = client.chat.completions.create(
-            messages=messages,
-            model=model,
-            temperature=temperature,
-        )
+        kwargs = dict(messages=messages, model=model, temperature=temperature)
+        if response_format:
+            kwargs["response_format"] = response_format
+        response = client.chat.completions.create(**kwargs)
         return response.choices[0].message.content
     except AuthenticationError as e:
-        # Auth errors surface immediately, no retry
         print(f"Groq Auth Error: {e}")
         return f"Authentication Error: {e}"
     except Exception as e:
-        # Re-raise API/rate-limit errors so tenacity can retry them
+        # If json_object mode is unsupported, retry without it
+        if response_format and "response_format" in str(e).lower():
+            try:
+                response = client.chat.completions.create(
+                    messages=messages, model=model, temperature=temperature
+                )
+                return response.choices[0].message.content
+            except Exception as e2:
+                raise e2
         print(f"Groq API Error: {e}")
         raise e

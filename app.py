@@ -184,12 +184,6 @@ with tab3:
         with col_cat:
             st.metric(label="Locality", value=lead_row['locality'] or "—")
 
-        # Score history chart
-        score_hist = get_score_history(selected_lead_id)
-        if not score_hist.empty and len(score_hist) > 1:
-            st.subheader("Score Trajectory")
-            st.line_chart(score_hist.set_index('recorded_at')['score'])
-
         st.subheader("Chat Interface")
 
         # Auto-refresh every 30 s to check for inactivity nudge

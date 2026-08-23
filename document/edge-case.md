@@ -20,7 +20,7 @@ This document identifies edge cases, failure modes, and boundary conditions acro
 
 | # | Edge Case | Component | Impact | Current Handling | Severity |
 |---|-----------|-----------|--------|-----------------|----------|
-| 2.1 | Phone number submitted in different formats (`+919876543210` vs `9876543210` vs `98765 43210`) | `save_lead()` | Same person stored as multiple leads — deduplication fails | ❌ Not handled — phone is compared as-is, no normalization | 🔴 Critical |
+| 2.1 | Phone number submitted in different formats (`+919876543210` vs `9876543210` vs `98765 43210`) | `save_lead()` | Same person stored as multiple leads — deduplication fails | ✅ **Fixed (v1.3)** — `normalise_phone()` strips non-digits, removes leading zero, adds `+91` — all variants → `+919876543210` | ✅ Safe |
 | 2.2 | Phone field left empty and bypass validation | `app.py` Tab 2 | SQLite stores lead with `phone=''`, second empty-phone lead fails UNIQUE constraint | Partial — UI checks `if not phone:` but doesn't prevent whitespace-only input | 🟡 Medium |
 | 2.3 | Very long name/email/profession (10,000+ chars) | `save_lead()` | SQLite TEXT has no length limit — stores it but UI may break | ❌ No input length validation | 🟢 Low |
 | 2.4 | SQL injection via form fields | `app.py` Tab 2 | Potential data corruption | ✅ Handled — uses parameterized queries (`:name`, `:phone`, etc.) | ✅ Safe |
@@ -89,13 +89,14 @@ This document identifies edge cases, failure modes, and boundary conditions acro
 
 | # | Edge Case | Component | Impact | Current Handling | Severity |
 |---|-----------|-----------|--------|-----------------|----------|
-| 7.1 | LLM returns JSON wrapped in markdown code blocks (\`\`\`json...\`\`\`) | `extract_bant_and_score()` | JSON parsing fails | ✅ Handled — strips ```` ```json ```` and ```` ``` ```` before parsing | ✅ Safe |
-| 7.2 | LLM returns malformed JSON (missing quotes, trailing commas) | `extract_bant_and_score()` | `json.loads()` fails | ✅ Handled — falls back to `{"score": 0, "category": "Cold"}` | ✅ Safe |
-| 7.3 | LLM returns `score` as a string ("75") instead of integer (75) | `extract_bant_and_score()` | `bant.get("score", 0)` returns string → `UPDATE leads SET intent_score = '75'` — SQLite coerces but not guaranteed | ❌ No explicit `int()` cast on the score | 🟡 Medium |
-| 7.4 | LLM returns score outside 0–100 range (e.g., 150 or -10) | `extract_bant_and_score()` | Invalid score stored in database | ❌ No clamping to valid range | 🟡 Medium |
-| 7.5 | LLM returns category other than Hot/Warm/Cold (e.g., "Medium", "Very Hot") | `extract_bant_and_score()` | Non-standard category stored — UI still displays it | ❌ No validation against allowed values | 🟢 Low |
-| 7.6 | Very short conversation (1–2 messages like "Hi" / "Hello") | `extract_bant_and_score()` | Not enough BANT signals — LLM guesses or returns all nulls | Partial — fallback to score=0, Cold; but LLM may still over-score | 🟢 Low |
-| 7.7 | LLM returns completely unrelated text (no JSON at all) | `extract_bant_and_score()` | JSON parsing fails | ✅ Handled — falls back to `{"score": 0, "category": "Cold"}` | ✅ Safe |
+| 7.1 | LLM returns JSON wrapped in markdown code blocks | `extract_bant_and_score()` | JSON parsing fails | ✅ Handled — strips fences before parsing; `response_format=json_object` eliminates this at source | ✅ Safe |
+| 7.2 | LLM returns malformed JSON | `extract_bant_and_score()` | Pydantic `ValidationError` raised | ✅ **Fixed (v1.3)** — `BANTResult(**parsed)` validates; failure logged via `logging.warning()` with raw response; falls back to Cold/0 | ✅ Safe |
+| 7.3 | LLM returns `score` as string ("75") instead of integer | `extract_bant_and_score()` | Type mismatch in DB | ✅ **Fixed (v1.3)** — Pydantic `score: int` coerces automatically | ✅ Safe |
+| 7.4 | LLM returns score outside 0–100 range (e.g., 150 or -10) | `extract_bant_and_score()` | Invalid score stored | ✅ **Fixed (v1.3)** — `@field_validator('score')` clamps to `max(0, min(100, v))` | ✅ Safe |
+| 7.5 | LLM returns category other than Hot/Warm/Cold (e.g., "Medium") | `extract_bant_and_score()` | Non-standard category | ✅ **Fixed (v1.3)** — `Literal["Hot", "Warm", "Cold"]` type annotation causes `ValidationError` → fallback to Cold | ✅ Safe |
+| 7.6 | Very short conversation (1–2 messages) | `extract_bant_and_score()` | Not enough BANT signals — LLM may over-score | ✅ **Mitigated (v1.3)** — BANT only runs every 3rd user message; minimal conversations won't trigger scoring | 🟢 Low |
+| 7.7 | Silent failure: hot lead silently appears Cold | `extract_bant_and_score()` | Lead not followed up | ✅ **Fixed (v1.3)** — every parse failure emits `logging.warning()` with raw LLM output; failures are visible in terminal | ✅ Safe |
+| 7.8 | Score jitters up and down each message | `app.py` Tab 3 | Confusing UX, poor demo | ✅ **Fixed (v1.3)** — BANT runs every 3rd user message; `score_history` table stores all snapshots; trajectory chart shows the climb | ✅ Safe |
 
 ---
 
@@ -130,28 +131,40 @@ This document identifies edge cases, failure modes, and boundary conditions acro
 
 | Severity | Count | Examples |
 |----------|-------|---------|
-| 🔴 **Critical** | 6 | Missing API key, model removed, CSV missing, conversation overflow, API outage |
-| 🟡 **Medium** | 18 | Phone format normalization, duplicate visit booking, LLM hallucination, past-date visits |
-| 🟢 **Low** | 11 | Long input fields, currency conversion, legal disclaimers, session expiry |
-| ✅ **Already Handled** | 10 | SQL injection, empty CSV, missing timeline column, malformed JSON, duplicate phone |
+| 🔴 **Critical** | 4 | Missing API key, model removed, CSV missing, conversation overflow |
+| 🟡 **Medium** | 14 | Duplicate visit booking, LLM hallucination, past-date visits, context overflow |
+| 🟢 **Low** | 9 | Long input fields, currency conversion, legal disclaimers, session expiry |
+| ✅ **Handled / Fixed** | 18 | SQL injection, empty CSV, phone normalisation, Pydantic BANT, score clamping, category validation, parse logging, score jitter |
 
 ---
 
-## Recommended Priority Fixes
+## Fixed in v1.3
 
-### Immediate (Before Demo)
-1. **Phone normalization** — Strip spaces, remove `+91` prefix, enforce 10-digit format before SQLite insert
-2. **Conversation history windowing** — Keep only the last N messages (e.g., 20) in the LLM prompt to prevent context overflow
-3. **Distinguish new vs. duplicate lead** — Show different messages: "New lead created!" vs. "Lead already exists (ID: X)"
+| # | Fix | File |
+|---|-----|------|
+| F1 | Phone E.164 normalisation — `normalise_phone()` | `database.py` |
+| F2 | Locality field added to leads + Tab 2 form | `database.py`, `app.py` |
+| F3 | Pydantic `BANTResult` validation — score clamped, category constrained | `qualification_agent.py` |
+| F4 | Parse failures logged with raw response — never silent | `qualification_agent.py` |
+| F5 | `response_format=json_object` passed to Groq with graceful fallback | `llm_client.py` |
+| F6 | Visit status lifecycle: Scheduled → Completed / No-show / Rescheduled | `database.py`, `app.py` |
+| F7 | BANT runs every 3rd message (not every message) | `app.py` |
+| F8 | `score_history` table + trajectory line chart | `database.py`, `app.py` |
+| F9 | Tab 5 Outcomes — funnel by source & locality | `app.py` |
+| F10 | Eval harness — 20 transcripts, accuracy + MAE | `eval_suite.py` |
+
+---
+
+## Remaining Priority Fixes
 
 ### Short-Term (Before Production)
-4. **Validate visit date ≥ today** and **time within 10 AM – 7 PM**
-5. **Add `max_tokens` parameter** to LLM calls to prevent runaway responses
-6. **Don't retry on `AuthenticationError`** — add `retry_if_not_exception_type(AuthenticationError)` to tenacity
-7. **Clamp BANT score** to 0–100 range and validate category is Hot/Warm/Cold
+1. **Conversation history windowing** — Keep only the last N messages in the LLM prompt to prevent context overflow (still unhandled)
+2. **Validate visit date ≥ today** and **time within 10 AM – 7 PM**
+3. **Add `max_tokens` parameter** to LLM calls to prevent runaway responses
+4. **Distinguish new vs. duplicate lead** — "New lead created!" vs. "Lead already exists (ID: X)"
 
 ### Long-Term (Production Hardening)
-8. Enable **SQLite WAL mode** for better concurrent write handling
-9. Add **content moderation** layer before sending user messages to the LLM
-10. Implement **prompt injection detection** for the nurture chat
-11. Add **conversation summarization** to compress long histories instead of simple truncation
+5. Enable **SQLite WAL mode** for concurrent writes
+6. Add **content moderation** before sending user messages to the LLM
+7. Implement **prompt injection detection** for the nurture chat
+8. Add **conversation summarization** to compress long histories

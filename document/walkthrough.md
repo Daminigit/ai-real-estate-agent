@@ -1,44 +1,115 @@
-# Real Estate AI Agent: Implementation Walkthrough (Streamlit + Groq)
+# Real Estate AI Agent — Walkthrough & Change Log
 
-I have successfully re-architected the agentic workflow to use the **Groq API** with custom Python orchestration (removing LangChain) and built a comprehensive **Streamlit UI** to manage the entire lead journey.
+## Current State
 
-## Changes Made
-
-### 1. Project Infrastructure & UI
-* **Streamlit App (`app.py`)**: A modern, interactive dashboard with exactly four tabs representing the funnel.
-* **Database (`database.py`)**: SQLite CRM (`crm.db`) to store unified lead records, conversational history, live intent scores, and scheduled site visits. Duplicate phone numbers are automatically deduplicated.
-* **API Client (`llm_client.py`)**: A wrapper around the Groq Python SDK using `tenacity` for rate-limit retries.
-
-### 2. Custom AI Agents (No LangChain)
-* **Analytics Agent (`segmentation_agent.py`)**: Analyzes the parsed `catchment_enquiries.csv` using `llama-3.3-70b-versatile` to generate buyer personas and ad copy on demand.
-* **Nurture Agent (`nurture_agent.py`)**: Powers the live chat. Instead of a Vector DB, it loads `project_brochure.md` directly into the system prompt for lightning-fast, highly accurate conversational responses.
-* **Qualification Agent (`qualification_agent.py`)**: Analyzes the chat history in the background after every message to extract BANT details and update the lead's Intent Score (0-100) and Category (Hot/Warm/Cold).
+The application is a fully functional, 5-tab Streamlit dashboard powered by the Groq API (`openai/gpt-oss-120b`) with a local SQLite CRM. All 7 review fixes have been implemented.
 
 ---
 
-## How to Run & Verify the System
+## How to Run
 
 > [!IMPORTANT]
-> The application is powered by Groq. You must set your API key in the environment for the LLM to function.
+> The application is powered by Groq. You must set your API key in `.env` for the LLM to function.
 
-### 1. Setup API Key
-Ensure your `.env` file in the workspace directory (`/Users/darshan/Documents/Potential buyer/`) has your Groq API key:
-```env
-GROQ_API_KEY="your_groq_api_key_here"
-```
-
-### 2. Activate Environment & Run Streamlit
-In your terminal, start the Streamlit application:
 ```bash
+# 1. Set your API key
+echo 'GROQ_API_KEY=gsk_your_key_here' > .env
+
+# 2. Activate virtual environment
 source venv/bin/activate
+
+# 3. Start the dashboard
 streamlit run app.py
+# Opens at http://localhost:8501
+
+# 4. Run the BANT evaluation harness (optional)
+python eval_suite.py
 ```
 
-### 3. Testing the 4 Funnel Tabs
-1. **Insights & Segments**: View the historical catchment data summary and click "Generate Personas & Ad Copy" to trigger the Groq LLM.
-2. **Campaign & Capture**: Fill out the simulated ad lead form. Try submitting the exact same phone number twice to verify the deduplication logic in the database.
-3. **Qualify & Nurture**: 
-   - Select the lead you just created. 
-   - Ask questions about the project (e.g., "What are the amenities?").
-   - Watch the **Live Intent Score (BANT)** metric automatically update at the top of the tab as you chat and express intent!
-4. **Site Visits**: Once a lead expresses intent to visit, head to this tab to select the lead, pick a date and time slot, and confirm the booking. It will instantly appear in the "Confirmed Visits" table.
+---
+
+## Tab-by-Tab Guide
+
+### Tab 1 — Insights & Segments
+1. The historical data summary is auto-loaded from `data/catchment_enquiries.csv`
+2. Click **"Generate Personas & Ad Copy (Groq)"** to trigger the segmentation agent
+3. The LLM will return 3–5 buyer personas with Meta/LinkedIn/Google targeting parameters and ad copy
+
+### Tab 2 — Campaign & Capture
+1. Fill in the simulated lead form (name, phone, email, source, profession, **locality**, budget)
+2. The **Locality** field is a fixed selectbox with 8 catchment options — data arrives pre-normalised
+3. Phone is automatically normalised to E.164 before saving — `9876543210`, `09876543210`, `+919876543210` all map to the same lead row
+4. Submitting the same phone number twice returns the existing Lead ID (no duplicate)
+
+### Tab 3 — Qualify & Nurture
+1. Select a lead — the selector shows name, phone, and locality
+2. The **Live Intent Score (BANT)** metric and locality are shown side by side
+3. A **Score Trajectory** line chart appears once 2+ scoring events exist
+4. Chat with the AI agent — it knows all Aurelia Heights details (prices, amenities, location) from the brochure
+5. BANT qualification runs **every 3rd user message** to reduce cost and score jitter
+6. **Chat-based site visit booking:** Tell the agent *"I'd like to book a visit"* → it will ask for your preferred date and time → confirm → a `📅` toast will appear and the visit is automatically saved in `site_visits` as `Scheduled`, with the lead upgraded to Hot
+
+### Tab 4 — Site Visits
+1. **Book a Slot** (left): Select lead, pick date/time, click Confirm → inserts as `Scheduled`
+2. **Status Summary Metrics**: Real-time count of Scheduled / Completed / No-show / Rescheduled visits
+3. **Inline Status Updater**: Select any visit and change its status to Completed, No-show, or Rescheduled
+4. Full visits table with locality column for geographic analysis
+
+### Tab 5 — Outcomes
+1. Automatically reads all leads and visits and computes a funnel: Leads → Visits Booked → Completed → No-shows
+2. Broken down by **Source** (Facebook Ad, Google, etc.) and **Locality** (Whitefield, Hoodi, etc.)
+3. Computes Booking Rate % and Completion Rate % per group
+4. Bar charts visualise which sources and localities convert best
+5. This directly validates whether the catchment targeting personas from Tab 1 are working
+
+---
+
+## Change Log
+
+### v1.0 — Initial Implementation
+- 4-tab Streamlit dashboard (Insights, Capture, Nurture, Site Visits)
+- Groq LLM integration with tenacity retries
+- SQLite CRM with 3 tables (leads, conversations, site_visits)
+- Phone-based deduplication
+
+### v1.1 — Bug Fixes
+- Fixed `nurture_agent.py` brochure path from root to `document/project_brochure.md`
+- Fixed `data_parser.py` CSV path from root to `data/catchment_enquiries.csv`
+- Fixed lead score not updating when visit booked via Tab 4
+- Retroactively upgraded all existing site-visit leads to Hot
+
+### v1.2 — Chat-Based Site Visit Booking
+- Updated nurture agent system prompt to proactively collect visit date/time
+- Added `[BOOK_VISIT: YYYY-MM-DD HH:MM]` tag interception in `app.py`
+- Visit automatically inserted into `site_visits` and lead upgraded to Hot via chat
+
+### v1.3 — All 7 Review Fixes
+| Fix | What Changed |
+|-----|-------------|
+| **Locality field** | `locality TEXT` added to `leads` table with DB migration; Tab 2 form uses `st.selectbox` with 8 fixed catchment options |
+| **E.164 phone normalisation** | `normalise_phone()` in `database.py` — 4 phone formats → same row |
+| **Pydantic BANT validation** | `BANTResult` model validates output; score clamped 0–100; `logging.warning()` on every parse failure with raw response |
+| **json_object response format** | `llm_client.py` accepts `response_format` parameter with graceful fallback |
+| **Visit status lifecycle** | Default changed from `Confirmed` → `Scheduled`; Completed / No-show / Rescheduled states; inline updater in Tab 4 |
+| **Score throttle + history** | BANT runs every 3rd user message; each score written to `score_history`; line chart in Tab 3 |
+| **Outcomes tab (Tab 5)** | Pandas `groupby` funnel by source and locality; booking rate and completion rate; bar charts |
+| **Eval harness** | `eval_suite.py` — 20 hand-labelled transcripts, category accuracy + score MAE, exits 1 if <70% |
+
+---
+
+## Verification
+
+```bash
+# Database migration (safe on existing crm.db)
+python database.py
+# Expected output:
+# Database initialised successfully.
+# '9876543210'    → +919876543210
+# '09876543210'   → +919876543210
+# '+919876543210' → +919876543210
+# '98-765-43210'  → +919876543210
+
+# BANT evaluation harness
+python eval_suite.py
+# Expected: ≥ 17/20 correct category, MAE < 20 points
+```

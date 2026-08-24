@@ -146,11 +146,24 @@ def analyze_and_segment(data_summary: str):
     ]
     
     print("Generating personas and ad copy via LLM...")
-    response = get_groq_completion(messages, response_format={"type": "json_object"})
+    # Don't use response_format=json_object — prompt is too large and causes Groq 400 errors.
+    # Instead, let the model output free text and extract the JSON block via regex.
+    response = get_groq_completion(messages)
+    
+    # Extract JSON block from response (handles ```json ... ``` or bare {...})
+    json_match = re.search(r'```json\s*([\s\S]+?)\s*```', response)
+    if json_match:
+        raw_json = json_match.group(1)
+    else:
+        # Try to find a bare JSON object
+        brace_match = re.search(r'(\{[\s\S]+\})', response)
+        raw_json = brace_match.group(1) if brace_match else response
+
     try:
-        ad_json = json.loads(response.replace("```json", "").replace("```", "").strip())
+        ad_json = json.loads(raw_json)
     except Exception as e:
-        return f"Error parsing JSON from LLM: {e}\n\nRaw Response:\n{response}"
+        # JSON extraction failed — show the raw markdown response directly
+        return f"{response}\n\n---\n> ⚠️ Compliance checks skipped (could not parse JSON). Error: {e}"
         
     print("Running compliance checks...")
     compliance_report = run_compliance_engine(ad_json, brochure_content)

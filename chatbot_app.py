@@ -1,9 +1,7 @@
-import os
 import json
 import sqlite3
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-from data_parser import load_enquiries
 from database import DB_PATH, save_lead
 from rag_engine import get_rag_chain
 from dotenv import load_dotenv

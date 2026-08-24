@@ -3,7 +3,6 @@ BANT Qualification Agent — Evaluation Harness
 Run: python eval_suite.py
 Reports category accuracy and MAE on score vs hand-labelled ground truth.
 """
-import json
 import sys
 from qualification_agent import extract_bant_and_score
 

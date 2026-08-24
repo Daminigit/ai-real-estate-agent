@@ -10,8 +10,7 @@ import sqlite3
 import re
 import uuid
 import logging
-from datetime import datetime
-from streamlit_autorefresh import st_autorefresh
+
 from database import DB_PATH, save_lead, record_score, LOCALITIES, init_db
 from nurture_agent import chat_with_lead
 from qualification_agent import extract_bant_and_score
@@ -31,6 +30,8 @@ url_source = params.get("source", "Ad Link").replace("_", " ").title()
 url_persona = params.get("persona", "")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
+
 def save_chat_message(lead_id, role, content):
     conn = sqlite3.connect(DB_PATH)
     conn.execute(
@@ -40,11 +41,13 @@ def save_chat_message(lead_id, role, content):
     conn.commit()
     conn.close()
 
+
 def update_lead_field(lead_id, field, value):
     conn = sqlite3.connect(DB_PATH)
     conn.execute(f"UPDATE leads SET {field} = ? WHERE id = ?", (value, lead_id))
     conn.commit()
     conn.close()
+
 
 def update_lead_score(lead_id, score, category):
     conn = sqlite3.connect(DB_PATH)
@@ -52,12 +55,14 @@ def update_lead_score(lead_id, score, category):
     conn.commit()
     conn.close()
 
+
 def get_lead_row(lead_id):
     conn = sqlite3.connect(DB_PATH)
     import pandas as pd
     df = pd.read_sql_query("SELECT * FROM leads WHERE id = ?", conn, params=(lead_id,))
     conn.close()
     return df.iloc[0].to_dict() if not df.empty else {}
+
 
 # ── Create skeleton lead on first load ────────────────────────────────────────
 if "landing_lead_id" not in st.session_state:

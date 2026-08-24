@@ -4,11 +4,11 @@ import sqlite3
 import pandas as pd
 import re
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 from streamlit_autorefresh import st_autorefresh
 from data_parser import load_enquiries, get_insights_summary
 from segmentation_agent import analyze_and_segment
-from database import DB_PATH, save_lead, init_db, record_score, LOCALITIES
+from database import DB_PATH, init_db, record_score
 from nurture_agent import chat_with_lead
 from qualification_agent import extract_bant_and_score
 
@@ -29,11 +29,13 @@ tab1, tab3, tab4, tab5 = st.tabs([
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
+
 def get_all_leads():
     conn = sqlite3.connect(DB_PATH)
     df = pd.read_sql_query("SELECT * FROM leads", conn)
     conn.close()
     return df
+
 
 def get_chat_history(lead_id):
     conn = sqlite3.connect(DB_PATH)
@@ -43,6 +45,7 @@ def get_chat_history(lead_id):
     )
     conn.close()
     return df.to_dict('records')
+
 
 def save_chat_message(lead_id, role, content):
     conn = sqlite3.connect(DB_PATH)
@@ -54,6 +57,7 @@ def save_chat_message(lead_id, role, content):
     conn.commit()
     conn.close()
 
+
 def update_lead_score(lead_id, score, category):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -64,6 +68,7 @@ def update_lead_score(lead_id, score, category):
     conn.commit()
     conn.close()
 
+
 def get_score_history(lead_id):
     conn = sqlite3.connect(DB_PATH)
     df = pd.read_sql_query(
@@ -72,6 +77,7 @@ def get_score_history(lead_id):
     )
     conn.close()
     return df
+
 
 def get_last_message_info(lead_id):
     """Returns (role, timestamp_str) of the most recent conversation message."""
@@ -84,6 +90,7 @@ def get_last_message_info(lead_id):
     row = cursor.fetchone()
     conn.close()
     return row  # (role, timestamp_str) or None
+
 
 # Quick reply options shown on greeting and nudge
 QUICK_REPLIES = [
@@ -153,16 +160,20 @@ with tab3:
             "Select a Lead to Nurture",
             leads_df['id'].tolist(),
             format_func=lambda x: (
-                f"{x}: {leads_df[leads_df['id']==x]['name'].values[0]} "
-                f"({leads_df[leads_df['id']==x]['phone'].values[0]}) "
-                f"— {leads_df[leads_df['id']==x]['locality'].values[0] or 'Locality unknown'}"
+                f"{x}: {leads_df[leads_df['id'] == x]['name'].values[0]} "
+                f"({leads_df[leads_df['id'] == x]['phone'].values[0]}) "
+                f"— {leads_df[leads_df['id'] == x]['locality'].values[0] or 'Locality unknown'}"
             )
         )
 
         lead_row = leads_df[leads_df['id'] == selected_lead_id].iloc[0]
         col_score, col_cat = st.columns(2)
         with col_score:
-            st.metric(label="Live Intent Score (BANT)", value=f"{lead_row['intent_score']} / 100", delta=lead_row['category'])
+            st.metric(
+                label="Live Intent Score (BANT)",
+                value=f"{
+                    lead_row['intent_score']} / 100",
+                delta=lead_row['category'])
         with col_cat:
             st.metric(label="Locality", value=lead_row['locality'] or "—")
 
@@ -292,7 +303,7 @@ with tab4:
             visit_lead_id = st.selectbox(
                 "Select Lead",
                 leads_df['id'].tolist(),
-                format_func=lambda x: f"{x}: {leads_df[leads_df['id']==x]['name'].values[0]}"
+                format_func=lambda x: f"{x}: {leads_df[leads_df['id'] == x]['name'].values[0]}"
             )
             visit_date = st.date_input("Date")
             visit_time = st.time_input("Time")
@@ -336,7 +347,7 @@ with tab4:
             visit_to_update = st.selectbox(
                 "Select Visit",
                 visits_df['id'].tolist(),
-                format_func=lambda x: f"#{x} — {visits_df[visits_df['id']==x]['name'].values[0]} @ {visits_df[visits_df['id']==x]['scheduled_time'].values[0]}"
+                format_func=lambda x: f"#{x} — {visits_df[visits_df['id'] == x]['name'].values[0]} @ {visits_df[visits_df['id'] == x]['scheduled_time'].values[0]}"
             )
             new_status = st.selectbox("New Status", ["Scheduled", "Completed", "No-show", "Rescheduled"])
             if st.button("Update Status"):

@@ -1,11 +1,9 @@
 import sqlite3
-import pandas as pd
 from database import DB_PATH, save_lead, init_db
 from data_parser import load_enquiries, get_insights_summary
 from segmentation_agent import analyze_and_segment
 from nurture_agent import chat_with_lead
 from qualification_agent import extract_bant_and_score
-import os
 
 print("Starting E2E Backend Tests...")
 

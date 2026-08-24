@@ -124,6 +124,23 @@ with tab1:
                 report = analyze_and_segment(summary)
                 st.markdown(report)
 
+        st.divider()
+        st.subheader("📎 Shareable Ad Deep-Links")
+        st.markdown(
+            "Share these links in your ad campaigns. The source is auto-captured when a lead clicks the link and lands on the chat page."
+        )
+        BASE_URL = "http://localhost:8503"
+        ad_links = [
+            ("Google Search", "google", "it_professional"),
+            ("Meta / Facebook", "meta", "it_professional"),
+            ("LinkedIn", "linkedin", "nri_investor"),
+            ("Instagram", "instagram", "entrepreneur"),
+            ("Property Portal", "property_portal", "it_professional"),
+        ]
+        for label, source, persona in ad_links:
+            url = f"{BASE_URL}/?source={source}&persona={persona}"
+            st.markdown(f"**{label}:** `{url}`  [↗ Open]({url})")
+
 # ── TAB 2: Campaign & Capture ─────────────────────────────────────────────────
 with tab2:
     st.header("Simulated Lead Capture Form")

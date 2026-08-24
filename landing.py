@@ -77,9 +77,10 @@ if "landing_lead_id" not in st.session_state:
     }
     lead_id = save_lead(lead_data)
     st.session_state["landing_lead_id"] = lead_id
-    st.session_state["qual_step"] = "locality"   # qualifying state machine
+    st.session_state["qual_step"] = "locality"   # qualifying state machine: locality -> budget -> phone -> done
     st.session_state["landing_chat"] = []
     st.session_state["qual_done"] = False
+    st.session_state["chosen_budget_label"] = ""
 
 lead_id = st.session_state["landing_lead_id"]
 
@@ -176,21 +177,57 @@ elif st.session_state["qual_step"] == "budget":
             update_lead_score(lead_id, score, category)
             record_score(lead_id, score, category)
 
-            # Bot transitions to free-form chat
-            lead_info = get_lead_row(lead_id)
-            bot_intro = (
-                f"Perfect! Here's what we have for you:\n\n"
-                f"Aurelia Heights offers beautifully crafted 2BHK and 3BHK apartments in the Whitefield–Hoodi belt "
-                f"of Bengaluru — just **1.8 km from Hoodi Metro Station**.\n\n"
-                f"With your budget of **{label}**, I can suggest the best configurations for you. "
-                f"Feel free to ask me anything — pricing, amenities, floor plans, or to book a site visit! 🏡"
+            # Bot asks for phone number (qualifying step 3)
+            bot_q3 = (
+                f"Great choice! 💰 **{label}** noted.\n\n"
+                "Last quick one — **what's your mobile number?** \n"
+                "We'll use it to send you floor plans and schedule your site visit."
             )
-            st.session_state["landing_chat"].append({"role": "assistant", "content": bot_intro})
-            save_chat_message(lead_id, "assistant", bot_intro)
-
-            st.session_state["qual_step"] = "done"
-            st.session_state["qual_done"] = True
+            st.session_state["landing_chat"].append({"role": "assistant", "content": bot_q3})
+            save_chat_message(lead_id, "assistant", bot_q3)
+            st.session_state["chosen_budget_label"] = label
+            st.session_state["qual_step"] = "phone"
             st.rerun()
+
+# ── Qualifying Step: PHONE ─────────────────────────────────────────────────
+elif st.session_state["qual_step"] == "phone":
+    from database import normalise_phone
+    with st.form("phone_form"):
+        phone_input = st.text_input("Your mobile number", placeholder="e.g. 9876543210")
+        submitted_phone = st.form_submit_button("Submit →")
+    if submitted_phone and phone_input.strip():
+        normalised = normalise_phone(phone_input.strip())
+        with st.chat_message("user"):
+            st.markdown(normalised)
+        st.session_state["landing_chat"].append({"role": "user", "content": normalised})
+        save_chat_message(lead_id, "user", normalised)
+
+        # Update the skeleton lead's anonymous phone with the real one
+        conn = sqlite3.connect(DB_PATH)
+        try:
+            conn.execute("UPDATE leads SET phone = ?, name = 'Web Lead' WHERE id = ?", (normalised, lead_id))
+            conn.commit()
+        except Exception:
+            pass  # duplicate phone — ignore gracefully
+        finally:
+            conn.close()
+
+        # Bot opens free-form chat
+        label = st.session_state.get("chosen_budget_label", "your budget")
+        lead_info = get_lead_row(lead_id)
+        bot_intro = (
+            f"Perfect! We've saved your number ✅\n\n"
+            f"Aurelia Heights offers beautifully crafted 2BHK and 3BHK apartments in the Whitefield–Hoodi belt "
+            f"of Bengaluru — just **1.8 km from Hoodi Metro Station**.\n\n"
+            f"With your budget of **{label}**, I can suggest the best configurations for you. "
+            f"Feel free to ask me anything — pricing, amenities, floor plans, or to book a site visit! 🏡"
+        )
+        st.session_state["landing_chat"].append({"role": "assistant", "content": bot_intro})
+        save_chat_message(lead_id, "assistant", bot_intro)
+
+        st.session_state["qual_step"] = "done"
+        st.session_state["qual_done"] = True
+        st.rerun()
 
 # ── Free-form Chat (after qualifying is done) ─────────────────────────────────
 elif st.session_state["qual_step"] == "done":

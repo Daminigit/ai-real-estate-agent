@@ -20,9 +20,8 @@ init_db()
 st.set_page_config(page_title="Real Estate AI Agent", layout="wide")
 st.title("🏡 AI-Powered Real Estate Agent")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab3, tab4, tab5 = st.tabs([
     "Insights & Segments",
-    "Campaign & Capture",
     "Qualify & Nurture",
     "Site Visits",
     "📊 Outcomes"
@@ -141,40 +140,6 @@ with tab1:
             url = f"{BASE_URL}/?source={source}&persona={persona}"
             st.markdown(f"**{label}:** `{url}`  [↗ Open]({url})")
 
-# ── TAB 2: Campaign & Capture ─────────────────────────────────────────────────
-with tab2:
-    st.header("Simulated Lead Capture Form")
-    st.markdown("Fill this out to simulate a lead coming in from Facebook/Google Ads.")
-
-    with st.form("lead_form"):
-        name = st.text_input("Name")
-        phone = st.text_input("Phone Number")
-        email = st.text_input("Email")
-        source = st.selectbox("Source", ["Facebook Ad", "Google Search", "LinkedIn", "Instagram Ad", "Walk-in", "Referral", "Property Portal", "Hoarding"])
-        profession = st.text_input("Profession")
-        locality = st.selectbox("Locality (Where do you live?)", LOCALITIES)
-        budget = st.slider("Budget Estimate (Lakhs)", 50, 200, (80, 120))
-
-        submitted = st.form_submit_button("Submit Lead")
-
-        if submitted:
-            if not phone:
-                st.error("Phone number is required for deduplication.")
-            else:
-                lead_data = {
-                    "name": name,
-                    "phone": phone,
-                    "email": email,
-                    "source": source,
-                    "profession": profession,
-                    "locality": locality,
-                    "budget_min": budget[0],
-                    "budget_max": budget[1],
-                    "intent_score": 0,
-                    "category": "Cold"
-                }
-                lead_id = save_lead(lead_data)
-                st.success(f"Lead saved successfully! (Lead ID: {lead_id})")
 
 # ── TAB 3: Qualify & Nurture ──────────────────────────────────────────────────
 with tab3:

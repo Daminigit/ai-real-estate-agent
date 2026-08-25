@@ -146,6 +146,21 @@ if st.session_state["qual_step"] == "locality":
             st.session_state["qual_step"] = "budget"
             st.rerun()
 
+    if prompt := st.chat_input("Or type your locality here..."):
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        st.session_state["landing_chat"].append({"role": "user", "content": prompt})
+        save_chat_message(lead_id, "user", prompt)
+
+        update_lead_field(lead_id, "locality", prompt)
+
+        bot_q2 = f"Great, **{prompt}** it is! 🏙️\n\n**What's your approximate budget for this home?**"
+        st.session_state["landing_chat"].append({"role": "assistant", "content": bot_q2})
+        save_chat_message(lead_id, "assistant", bot_q2)
+
+        st.session_state["qual_step"] = "budget"
+        st.rerun()
+
 # ── Qualifying Step: BUDGET ───────────────────────────────────────────────────
 elif st.session_state["qual_step"] == "budget":
     budget_options = {
@@ -193,6 +208,40 @@ elif st.session_state["qual_step"] == "budget":
             st.session_state["chosen_budget_label"] = label
             st.session_state["qual_step"] = "phone"
             st.rerun()
+
+    if prompt := st.chat_input("Or type your budget here..."):
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        st.session_state["landing_chat"].append({"role": "user", "content": prompt})
+        save_chat_message(lead_id, "user", prompt)
+
+        conn = sqlite3.connect(DB_PATH)
+        conn.execute("UPDATE leads SET budget_min = ?, budget_max = ? WHERE id = ?", (0, 0, lead_id))
+        conn.commit()
+        conn.close()
+
+        lead_info = get_lead_row(lead_id)
+        real_history = [
+            m for m in st.session_state["landing_chat"]
+            if not (m["role"] == "assistant" and "two quick questions" in m["content"])
+        ]
+        history_text = "\n".join([f"{m['role']}: {m['content']}" for m in real_history])
+        bant = extract_bant_and_score(history_text, lead_info=lead_info)
+        score = bant.get("score", 0)
+        category = bant.get("category", "Cold")
+        update_lead_score(lead_id, score, category)
+        record_score(lead_id, score, category)
+
+        bot_q3 = (
+            f"Great choice! 💰 **{prompt}** noted.\n\n"
+            "Last quick one — **what's your mobile number?** \n"
+            "We'll use it to send you floor plans and schedule your site visit."
+        )
+        st.session_state["landing_chat"].append({"role": "assistant", "content": bot_q3})
+        save_chat_message(lead_id, "assistant", bot_q3)
+        st.session_state["chosen_budget_label"] = prompt
+        st.session_state["qual_step"] = "phone"
+        st.rerun()
 
 # ── Qualifying Step: PHONE ─────────────────────────────────────────────────
 elif st.session_state["qual_step"] == "phone":

@@ -285,13 +285,21 @@ elif st.session_state["qual_step"] == "done":
         st.session_state["landing_chat"].append({"role": "assistant", "content": response})
         save_chat_message(lead_id, "assistant", response)
 
-        # Live BANT update
+        # Live BANT update (Ensure site visits are permanently Hot)
+        conn = sqlite3.connect(DB_PATH)
+        visit = conn.execute("SELECT id FROM site_visits WHERE lead_id = ? AND status = 'Scheduled'", (lead_id,)).fetchone()
+        conn.close()
+
         lead_info = get_lead_row(lead_id)
-        real_history = [m for m in st.session_state["landing_chat"]]
-        history_text = "\n".join([f"{m['role']}: {m['content']}" for m in real_history])
-        bant = extract_bant_and_score(history_text, lead_info=lead_info)
-        score = bant.get("score", 0)
-        category = bant.get("category", "Cold")
+        if visit:
+            score, category = 100, "Hot"
+        else:
+            real_history = [m for m in st.session_state["landing_chat"]]
+            history_text = "\n".join([f"{m['role']}: {m['content']}" for m in real_history])
+            bant = extract_bant_and_score(history_text, lead_info=lead_info)
+            score = bant.get("score", 0)
+            category = bant.get("category", "Cold")
+
         update_lead_score(lead_id, score, category)
         record_score(lead_id, score, category)
 

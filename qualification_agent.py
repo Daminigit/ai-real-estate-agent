@@ -45,8 +45,10 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
             "content": (
                 "You are an expert lead qualifier. Read the following conversation and extract "
                 "BANT details (Budget, Authority, Need, Timeline). "
-                "Also provide a score from 0 to 100 based on their intent to buy. "
-                "Note: The user may have already provided their budget or details in the Lead Profile below. Use it to inform your scoring. "
+                "Also provide a score from 0 to 100 and category based on this STRICT logic:\n"
+                "- WARM (score 70): If the user has answered the third question (budget) and their locality and budget are favourable/realistic.\n"
+                "- COLD (score 30): If they left after 2 questions, did not respond, or provided unfavourable/joke answers.\n"
+                "- (Note: HOT leads who book a site visit are handled automatically by the system, you should default to WARM if they show favourable intent).\n"
                 "Output ONLY a valid JSON object with keys: 'budget', 'authority', 'need', "
                 "'timeline', 'score' (integer 0-100), 'category' (must be exactly Hot, Warm, or Cold). "
                 "Do not include markdown code fences."

@@ -62,10 +62,12 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
     response_text = get_groq_completion(messages, max_tokens=300)
 
     try:
-        raw = response_text.replace("```json", "").replace("```", "").strip()
+        import re
+        # Extract json block using regex to ignore any conversational text
+        json_match = re.search(r'(\{[\s\S]+\})', response_text)
+        raw = json_match.group(1) if json_match else response_text
         parsed = json.loads(raw)
-        result = BANTResult(**parsed)
-        return result.model_dump()
+        return BANTResult(**parsed).model_dump()
     except (json.JSONDecodeError, ValidationError, Exception) as e:
         logger.warning(
             "BANT parse failure — falling back to Cold/0. "

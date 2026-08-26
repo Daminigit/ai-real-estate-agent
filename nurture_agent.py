@@ -28,9 +28,9 @@ def chat_with_lead(user_input: str, chat_history: list, lead_info: dict = None):
                 "You are an AI sales agent for Aurelia Heights. Use the following project brochure to "
                 "answer the user's questions. Be polite, concise, and helpful. Do not make up information. "
                 "If the user expresses interest in a site visit, proactively ask for their preferred date and time. "
-                "Once they provide a date and time, confirm the booking and append the exact string [BOOK_VISIT: YYYY-MM-DD HH:MM] "
-                "at the very end of your response. Ensure the date is in YYYY-MM-DD format and time is in HH:MM (24-hour) format. "
-                "Example: [BOOK_VISIT: 2026-08-25 14:30]"
+                "Once they provide a date and time, confirm the booking and append the exact string <<BOOK_VISIT: YYYY-MM-DD HH:MM>> "
+                "at the very end of your response on a new line. Ensure the date is in YYYY-MM-DD format and time is in HH:MM (24-hour) format. "
+                "Example: <<BOOK_VISIT: 2026-08-25 14:30>>"
                 f"{lead_context}"
                 f"\n\nBrochure Context:\n{brochure_content}"
             )

@@ -43,15 +43,19 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
         {
             "role": "system",
             "content": (
-                "You are an expert lead qualifier. Read the following conversation and extract "
-                "BANT details (Budget, Authority, Need, Timeline). "
-                "Also provide a score from 0 to 100 and category based on this STRICT logic:\n"
-                "- WARM (score 70): If the user has answered the third question (budget) and their locality and budget are favourable/realistic.\n"
-                "- COLD (score 30): If they left after 2 questions, did not respond, or provided unfavourable/joke answers.\n"
-                "- (Note: HOT leads who book a site visit are handled automatically by the system, you should default to WARM if they show favourable intent).\n"
-                "Output ONLY a valid JSON object with keys: 'budget', 'authority', 'need', "
-                "'timeline', 'score' (integer 0-100), 'category' (must be exactly Hot, Warm, or Cold). "
-                "Do not include markdown code fences."
+                "You are an expert real estate lead qualifier. Read the following conversation and extract "
+                "BANT details (Budget, Authority, Need, Timeline).\n\n"
+                "Also determine an overall lead score (integer 0-100) and category (must be exactly one of: Hot, Warm, or Cold) based on this logic:\n"
+                "1. **Hot (Score 75-100)**: Lead shows strong purchase intent. They have a clear budget that matches the project (starts at ~80L-90L), "
+                "clear need (e.g. 2BHK or 3BHK for self-use or investment), decision-making authority, and an immediate or short timeline (e.g., this month, 2-3 months, urgent relocation). "
+                "Crucially, any lead requesting or confirming a site visit this weekend, tomorrow, etc. MUST be classified as **Hot** with a score of 80+.\n"
+                "2. **Warm (Score 40-74)**: Lead shows genuine interest, but has minor friction, e.g., needs to discuss with spouse, NRI visiting India in 8 months, "
+                "timeline is 3-6 months, or needs to check the brochure first before booking a visit.\n"
+                "3. **Cold (Score 0-39)**: Lead is not interested, just browsing/exploring, looking for rentals only, or budget is completely unrealistic/too tight "
+                "for the project (e.g., tight 85L for a 3BHK starting at 1.1Cr, or left after brief/no answers).\n\n"
+                "Output ONLY a valid JSON object with keys: 'budget', 'authority', 'need', 'timeline', 'score', and 'category'. "
+                "Do not include markdown code fences or any surrounding text. "
+                "For BANT fields, summarize what you know or set to 'Unknown' if not mentioned."
                 f"{lead_context}"
             )
         },
@@ -60,9 +64,7 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
             "content": conversation_history
         }
     ]
-
-    response_text = get_groq_completion(messages, max_tokens=300)
-
+    response_text = get_groq_completion(messages, response_format={"type": "json_object"})
     try:
         import re
         # Extract json block using regex to ignore any conversational text
@@ -76,3 +78,4 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
             f"Error: {e!r} | Raw response: {response_text!r}"
         )
         return BANTResult().model_dump()
+

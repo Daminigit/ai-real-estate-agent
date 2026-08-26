@@ -265,10 +265,11 @@ elif st.session_state["qual_step"] == "done":
                 response = chat_with_lead(prompt, st.session_state["landing_chat"][:-1], lead_info=lead_info)
 
                 # Intercept site visit booking tag
-                match = re.search(r'\[BOOK_VISIT:\s*(.*?)\]', response)
+                match = re.search(r'(?:\[BOOK_VISIT:\s*(.*?)]|<<BOOK_VISIT:\s*(.*?)>>)', response)
                 if match:
-                    dt_str = match.group(1).strip()
-                    response = re.sub(r'\[BOOK_VISIT:.*?\]', '', response).strip()
+                    dt_str = match.group(1) or match.group(2)
+                    dt_str = dt_str.strip()
+                    response = re.sub(r'\[BOOK_VISIT:.*?\]|<<BOOK_VISIT:.*?>>', '', response).strip()
                     conn = sqlite3.connect(DB_PATH)
                     conn.execute(
                         "INSERT INTO site_visits (lead_id, scheduled_time, status) VALUES (?, ?, ?)",

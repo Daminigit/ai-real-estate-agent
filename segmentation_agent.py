@@ -149,9 +149,8 @@ def analyze_and_segment(data_summary: str):
     ]
     
     print("Generating personas and ad copy via LLM...")
-    # Don't use response_format=json_object — prompt is too large and causes Groq 400 errors.
-    # Instead, let the model output free text and extract the JSON block via regex.
-    response = get_groq_completion(messages, max_tokens=800)
+    # Use native JSON mode for Gemini to ensure structured and complete output
+    response = get_groq_completion(messages, max_tokens=3000, response_format={"type": "json_object"})
     
     # Extract JSON block from response (handles ```json ... ``` or bare {...})
     json_match = re.search(r'```json\s*([\s\S]+?)\s*```', response)

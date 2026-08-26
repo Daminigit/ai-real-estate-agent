@@ -125,10 +125,18 @@ with tab1:
 
     with col2:
         st.subheader("AI Segmentation")
-        if st.button("Generate Personas & Ad Copy (Groq)"):
-            with st.spinner("Analyzing data and generating insights..."):
-                report = analyze_and_segment(summary)
-                st.markdown(report)
+        if st.button("Generate Personas & Ad Copy (AI)"):
+            st.session_state.is_generating_personas = True
+            with st.spinner("Analyzing data and generating insights (this takes a few seconds)..."):
+                try:
+                    report = analyze_and_segment(summary)
+                    st.session_state.persona_report = report
+                except Exception as e:
+                    st.error(f"⚠️ API Error (Likely Rate Limit). Please wait a minute before trying again. Detailed error: {e}")
+            st.session_state.is_generating_personas = False
+            
+        if "persona_report" in st.session_state:
+            st.markdown(st.session_state.persona_report)
 
         st.divider()
         st.subheader("📎 Shareable Ad Deep-Links")
@@ -179,8 +187,9 @@ with tab3:
 
         st.subheader("Chat Interface")
 
-        # Auto-refresh every 30 s to check for inactivity nudge
-        st_autorefresh(interval=30_000, key=f"refresh_{selected_lead_id}")
+        # Auto-refresh every 30 s to check for inactivity nudge, but disable during long AI tasks
+        if not st.session_state.get("is_generating_personas", False):
+            st_autorefresh(interval=30_000, key=f"refresh_{selected_lead_id}")
 
         chat_key = f"chat_{selected_lead_id}"
         nudge_key = f"nudged_{selected_lead_id}"
@@ -248,10 +257,11 @@ with tab3:
                     response = chat_with_lead(prompt, st.session_state[chat_key][:-1], lead_info=lead_row.to_dict())
 
                     # Intercept booking tags
-                    match = re.search(r'\[BOOK_VISIT:\s*(.*?)\]', response)
+                    match = re.search(r'(?:\[BOOK_VISIT:\s*(.*?)]|<<BOOK_VISIT:\s*(.*?)>>)', response)
                     if match:
-                        dt_str = match.group(1).strip()
-                        response = re.sub(r'\[BOOK_VISIT:.*?\]', '', response).strip()
+                        dt_str = match.group(1) or match.group(2)
+                        dt_str = dt_str.strip()
+                        response = re.sub(r'\[BOOK_VISIT:.*?\]|<<BOOK_VISIT:.*?>>', '', response).strip()
 
                         conn = sqlite3.connect(DB_PATH)
                         c = conn.cursor()
@@ -322,6 +332,7 @@ with tab4:
                 update_lead_score(visit_lead_id, 100, "Hot")
                 record_score(visit_lead_id, 100, "Hot")
                 st.success("Visit Scheduled! Lead status upgraded to Hot.")
+                st.rerun()
 
     with col2:
         st.subheader("All Visits")

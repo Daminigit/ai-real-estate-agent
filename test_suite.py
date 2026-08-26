@@ -4,6 +4,7 @@ from data_parser import load_enquiries, get_insights_summary
 from segmentation_agent import analyze_and_segment
 from nurture_agent import chat_with_lead
 from qualification_agent import extract_bant_and_score
+import time
 
 print("Starting E2E Backend Tests...")
 
@@ -53,7 +54,7 @@ if "Mean Budget" in summary:
 else:
     print("❌ Data Summary FAILED")
 
-# 6. LLM segmentation check (Requires GROQ API KEY)
+# 6. LLM segmentation check (Requires API KEY)
 try:
     print("⏳ Testing Groq API (Segmentation)...")
     res = analyze_and_segment(summary)
@@ -63,6 +64,8 @@ try:
         print(f"❌ Groq API segmentation FAILED or returned Error: {res}")
 except Exception as e:
     print(f"❌ Groq API segmentation Error: {e}")
+
+time.sleep(5)
 
 # 7. LLM Nurture check
 try:
@@ -74,6 +77,8 @@ try:
         print(f"❌ Groq API nurturing chat FAILED or returned Error: {chat_res}")
 except Exception as e:
     print(f"❌ Groq API nurturing chat Error: {e}")
+
+time.sleep(5)
 
 # 8. LLM BANT check
 try:

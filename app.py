@@ -358,7 +358,7 @@ with tab4:
                 st.success(f"Visit #{visit_to_update} marked as {new_status}.")
                 st.rerun()
 
-            st.dataframe(visits_df, use_container_width=True)
+            st.dataframe(visits_df, width='stretch')
         else:
             st.info("No visits booked yet.")
 
@@ -401,7 +401,7 @@ with tab5:
         with col_s:
             st.subheader("By Source")
             source_funnel = build_funnel(leads_all, 'source')
-            st.dataframe(source_funnel, use_container_width=True)
+            st.dataframe(source_funnel, width='stretch')
             st.bar_chart(source_funnel.set_index('source')[['Visits_Booked', 'Completed']])
 
         with col_l:
@@ -411,5 +411,5 @@ with tab5:
                 st.info("No locality data yet — ensure leads are captured with the locality field.")
             else:
                 locality_funnel = build_funnel(loc_data, 'locality')
-                st.dataframe(locality_funnel, use_container_width=True)
+                st.dataframe(locality_funnel, width='stretch')
                 st.bar_chart(locality_funnel.set_index('locality')[['Visits_Booked', 'Completed']])

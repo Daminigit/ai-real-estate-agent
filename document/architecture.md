@@ -31,7 +31,7 @@ graph TD
     end
 
     subgraph "Core Infrastructure"
-        LLM["llm_client.py\n(Groq API — openai/gpt-oss-120b)\nwith tenacity retry + json_object mode"]
+        LLM["llm_client.py\n(Groq API — groq/compound-mini)\nwith tenacity retry + json_object mode"]
         DP["data_parser.py\n(Pandas Statistics Engine)"]
         DB["database.py\n(SQLite CRM — crm.db)\nE.164 phone normalisation"]
     end
@@ -106,7 +106,7 @@ A single-page Streamlit application with **five tabs** mapping directly to the f
 
 #### 3.3.1. LLM Client (`llm_client.py`)
 * **Provider:** Groq API (cloud-hosted inference)
-* **Model:** `openai/gpt-oss-120b`
+* **Model:** `groq/compound-mini`
 * **Retry Strategy:** `tenacity` — random exponential backoff (1–10s), max 5 attempts
 * **New:** Accepts optional `response_format` parameter; falls back gracefully if the model doesn't support `json_object` mode.
 
@@ -167,7 +167,7 @@ flowchart LR
 | Layer | Technology | Purpose |
 |-------|-----------|---------| 
 | LLM Provider | Groq API | Fast cloud inference |
-| LLM Model | `openai/gpt-oss-120b` | Chat completions for all agents |
+| LLM Model | `groq/compound-mini` | Chat completions for all agents |
 | LLM SDK | `groq` Python SDK | API client |
 | Retry | `tenacity` | Exponential backoff for rate limits |
 | Validation | `pydantic` v2 | BANT output schema validation |

@@ -37,7 +37,7 @@ This document identifies edge cases, failure modes, and boundary conditions acro
 |---|-----------|-----------|--------|-----------------|----------|
 | 3.1 | Groq API is completely down (outage) | `get_groq_completion()` | All agent functionality freezes; user waits ~50s (5 retries × ~10s max backoff) then sees `RetryError` | Partial — retries 5 times with backoff, but no user-friendly error message in the UI | 🔴 Critical |
 | 3.2 | Rate limit hit on free-tier Groq API (429 errors) | `get_groq_completion()` | Temporary delays | ✅ Handled — `tenacity` retries with exponential backoff | ✅ Safe |
-| 3.3 | Model `openai/gpt-oss-120b` removed or renamed by Groq | `get_groq_completion()` | `NotFoundError` on every call | ❌ No fallback model configured | 🔴 Critical |
+| 3.3 | Model `groq/compound-mini` removed or renamed by Groq | `get_groq_completion()` | `NotFoundError` on every call | ❌ No fallback model configured | 🔴 Critical |
 | 3.4 | LLM returns empty string response | All agents | Downstream agents try to parse empty content | ❌ No check for empty `response.choices[0].message.content` | 🟡 Medium |
 | 3.5 | LLM response is truncated due to token limit | All agents | Incomplete personas, partial JSON, broken markdown | ❌ No `max_tokens` set; no truncation detection | 🟡 Medium |
 | 3.6 | Messages list is extremely large (long conversation history) | `get_groq_completion()` | Exceeds model's 128K context window → API error | ❌ No conversation history trimming or token counting | 🟡 Medium |

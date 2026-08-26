@@ -5,7 +5,7 @@
 Build an agentic AI workflow for **Aurelia Heights** (a fictional residential project in Whitefield–Hoodi, Bengaluru) that manages the complete lead journey — from analyzing historical catchment data to converting qualified leads into confirmed site visits and measuring outcomes by source and locality.
 
 **Technical Constraints:**
-* **LLM:** Groq API → model `openai/gpt-oss-120b`, via `groq` Python SDK, API key from `.env`, retry on rate limits
+* **LLM:** Groq API → model `groq/compound-mini`, via `groq` Python SDK, API key from `.env`, retry on rate limits
 * **UI:** Streamlit dashboard with 5 tabs: Insights & Segments / Campaign & Capture / Qualify & Nurture / Site Visits / Outcomes
 * **Knowledge Base:** No Vector DB — load `document/project_brochure.md` directly into the system prompt
 * **Orchestration:** Custom Python modules (one per agent), simple orchestrator — no LangChain / LlamaIndex
@@ -121,7 +121,7 @@ Single wrapper function for all Groq API calls. Centralises model selection, key
 ### 3.2 Function Signature
 ```python
 @retry(wait=wait_random_exponential(min=1, max=10), stop=stop_after_attempt(5))
-def get_groq_completion(messages, model="openai/gpt-oss-120b",
+def get_groq_completion(messages, model="groq/compound-mini",
                         temperature=0.7, response_format=None) -> str:
 ```
 * `response_format={"type": "json_object"}` is passed by the qualification agent for structured output

@@ -2,7 +2,7 @@
 
 ## Current State
 
-The application is a fully functional, 5-tab Streamlit dashboard powered by the Groq API (`openai/gpt-oss-120b`) with a local SQLite CRM. All 7 review fixes have been implemented.
+The application is a fully functional, 5-tab Streamlit dashboard powered by the Groq API (`groq/compound-mini`) with a local SQLite CRM. All 7 review fixes have been implemented.
 
 ---
 

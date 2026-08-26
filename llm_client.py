@@ -7,7 +7,7 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 from dotenv import load_dotenv
 
 @retry(wait=wait_random_exponential(min=1, max=10), stop=stop_after_attempt(5))
-def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, max_tokens=None, response_format=None) -> str:
+def get_groq_completion(messages, model="groq/compound-mini", temperature=0.7, max_tokens=None, response_format=None) -> str:
     """Wrapper to call Groq API with rate limit retries."""
     # Ensure latest env vars are loaded dynamically
     load_dotenv(override=True)

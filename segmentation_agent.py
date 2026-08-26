@@ -118,7 +118,8 @@ def analyze_and_segment(data_summary: str):
             "content": (
                 "You are an expert Real Estate Marketing AI. Analyze historical enquiry data for Catchment A. "
                 "Generate EXACTLY 2 buyer personas. Keep all text extremely concise (max 1 sentence per field) to fit within strict token limits. "
-                "You MUST output ONLY a valid JSON object with the following structure:\n"
+                "Output ONLY a valid JSON object. Do not include markdown formatting.\n"
+                "WARNING: You have a strict token limit. Be extremely concise in your analysis and pitch to prevent JSON truncation.\n"
                 "{\n"
                 "  \"insights\": \"Demand insights text\",\n"
                 "  \"personas\": [\n"
@@ -150,7 +151,7 @@ def analyze_and_segment(data_summary: str):
     print("Generating personas and ad copy via LLM...")
     # Don't use response_format=json_object — prompt is too large and causes Groq 400 errors.
     # Instead, let the model output free text and extract the JSON block via regex.
-    response = get_groq_completion(messages, max_tokens=2500)
+    response = get_groq_completion(messages, max_tokens=800)
     
     # Extract JSON block from response (handles ```json ... ``` or bare {...})
     json_match = re.search(r'```json\s*([\s\S]+?)\s*```', response)

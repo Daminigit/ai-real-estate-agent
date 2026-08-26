@@ -43,5 +43,5 @@ def chat_with_lead(user_input: str, chat_history: list, lead_info: dict = None):
         
     messages.append({"role": "user", "content": user_input})
     
-    response_text = get_groq_completion(messages)
+    response_text = get_groq_completion(messages, max_tokens=500)
     return response_text

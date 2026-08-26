@@ -59,7 +59,7 @@ def extract_bant_and_score(conversation_history: str, lead_info: dict = None) ->
         }
     ]
 
-    response_text = get_groq_completion(messages, response_format={"type": "json_object"})
+    response_text = get_groq_completion(messages, max_tokens=150, response_format={"type": "json_object"})
 
     try:
         raw = response_text.replace("```json", "").replace("```", "").strip()

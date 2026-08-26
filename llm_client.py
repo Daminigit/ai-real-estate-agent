@@ -7,7 +7,7 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 from dotenv import load_dotenv
 
 @retry(wait=wait_random_exponential(min=1, max=10), stop=stop_after_attempt(5))
-def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, response_format=None) -> str:
+def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, max_tokens=None, response_format=None) -> str:
     """Wrapper to call Groq API with rate limit retries."""
     # Ensure latest env vars are loaded dynamically
     load_dotenv(override=True)
@@ -23,6 +23,8 @@ def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, 
         
     try:
         kwargs = dict(messages=messages, model=model, temperature=temperature)
+        if max_tokens is not None:
+            kwargs["max_tokens"] = max_tokens
         if response_format:
             kwargs["response_format"] = response_format
         response = client.chat.completions.create(**kwargs)
@@ -34,9 +36,10 @@ def get_groq_completion(messages, model="openai/gpt-oss-120b", temperature=0.7, 
         # If json_object mode is unsupported, retry without it
         if response_format and "response_format" in str(e).lower():
             try:
-                response = client.chat.completions.create(
-                    messages=messages, model=model, temperature=temperature
-                )
+                retry_kwargs = dict(messages=messages, model=model, temperature=temperature)
+                if max_tokens is not None:
+                    retry_kwargs["max_tokens"] = max_tokens
+                response = client.chat.completions.create(**retry_kwargs)
                 return response.choices[0].message.content
             except Exception as e2:
                 raise e2

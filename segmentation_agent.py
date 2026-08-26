@@ -22,7 +22,7 @@ def check_c1_hallucination(ad_copy_text: str, brochure_content: str) -> bool:
             "content": f"Brochure:\n{brochure_content}\n\nAd Copy:\n{ad_copy_text}"
         }
     ]
-    response = get_groq_completion(messages)
+    response = get_groq_completion(messages, max_tokens=150)
     try:
         json_match = re.search(r'\{[\s\S]+\}', response)
         raw = json_match.group(0) if json_match else response
@@ -116,8 +116,8 @@ def analyze_and_segment(data_summary: str):
         {
             "role": "system",
             "content": (
-                "You are an expert Real Estate Marketing AI Agent. Your goal is to analyze historical "
-                "enquiry data for Catchment A, generate 3-5 buyer personas, and provide ad copy for Meta and Google. "
+                "You are an expert Real Estate Marketing AI. Analyze historical enquiry data for Catchment A. "
+                "Generate EXACTLY 2 buyer personas. Keep all text extremely concise (max 1 sentence per field) to fit within strict token limits. "
                 "You MUST output ONLY a valid JSON object with the following structure:\n"
                 "{\n"
                 "  \"insights\": \"Demand insights text\",\n"
@@ -138,7 +138,7 @@ def analyze_and_segment(data_summary: str):
                 "4. Do NOT mention any religion, temple, or community.\n"
                 "5. Stick strictly to the character limits for Meta and Google.\n"
                 "Use ONLY the numbers provided in the historical data for personas. Use the project brochure for ad copy amenities and pricing."
-                f"\n\nProject Brochure:\n{brochure_content}"
+                f"\n\nProject Brochure (Summary):\n{brochure_content[:300]}..."
             )
         },
         {
@@ -150,7 +150,7 @@ def analyze_and_segment(data_summary: str):
     print("Generating personas and ad copy via LLM...")
     # Don't use response_format=json_object — prompt is too large and causes Groq 400 errors.
     # Instead, let the model output free text and extract the JSON block via regex.
-    response = get_groq_completion(messages)
+    response = get_groq_completion(messages, max_tokens=2500)
     
     # Extract JSON block from response (handles ```json ... ``` or bare {...})
     json_match = re.search(r'```json\s*([\s\S]+?)\s*```', response)
@@ -162,10 +162,11 @@ def analyze_and_segment(data_summary: str):
         raw_json = brace_match.group(1) if brace_match else response
 
     try:
+        print(f"RAW JSON REPR: {repr(raw_json)[:500]}...")
         ad_json = json.loads(raw_json)
     except Exception as e:
         # JSON extraction failed — show the raw markdown response directly
-        return f"{response}\n\n---\n> ⚠️ Compliance checks skipped (could not parse JSON). Error: {e}"
+        return f"### AI Response Error\nThe AI failed to generate the required format.\n\n**Raw Output:**\n```text\n{response}\n```\n\n---\n> ⚠️ Compliance checks skipped (could not parse JSON). Error: {e}"
         
     print("Running compliance checks...")
     compliance_report = run_compliance_engine(ad_json, brochure_content)

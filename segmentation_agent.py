@@ -22,11 +22,13 @@ def check_c1_hallucination(ad_copy_text: str, brochure_content: str) -> bool:
             "content": f"Brochure:\n{brochure_content}\n\nAd Copy:\n{ad_copy_text}"
         }
     ]
-    response = get_groq_completion(messages, response_format={"type": "json_object"})
+    response = get_groq_completion(messages)
     try:
-        data = json.loads(response.replace("```json", "").replace("```", "").strip())
-        return data.get("hallucination_found", True) # Default to true on edge cases
-    except:
+        json_match = re.search(r'\{[\s\S]+\}', response)
+        raw = json_match.group(0) if json_match else response
+        data = json.loads(raw)
+        return data.get("hallucination_found", True)
+    except Exception:
         return True
 
 def run_compliance_engine(ad_json, brochure_content):
